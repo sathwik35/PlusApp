@@ -29,10 +29,12 @@
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>PlusLauchScreen</string>
 	<key>CFBundleName</key>
 	<string>PlusApp</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>UIMainStoryboardFile</key>
+	<string>PlusLauchScreen</string>
 </dict>
 </plist>

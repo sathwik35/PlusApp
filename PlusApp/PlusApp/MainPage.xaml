@@ -4,4 +4,4 @@
         <!-- Place new controls here -->
         <Label Text="Hallo wereld!" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
     </StackLayout>
-</ContentPage>
+</ContentPage> 
