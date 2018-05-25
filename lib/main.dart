@@ -5,10 +5,10 @@ import 'home.dart';
 void main()=> runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-  // final routes = <String, WidgetBuilder> {
-  //   LoginPage.tag: (context) => LoginPage(),
-  //   HomePage.tag: (context) => HomePage(),
-  // };
+  final routes = <String, WidgetBuilder> {
+    LoginPage.tag: (context) => LoginPage(),
+    HomePage.tag: (context) => HomePage(),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green
       ),
       home: new LoginPage(),
-      //routes: routes,
+      routes: routes,
     );
   }
 
