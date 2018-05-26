@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {
-  static String tag = "login-page";
-
   @override
   State createState() => new LoginPageState();
 }

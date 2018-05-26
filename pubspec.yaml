@@ -29,6 +29,7 @@ flutter:
   assets:
    - assets/Background.png
    - assets/login_transparent.png
+   - assets/menu.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

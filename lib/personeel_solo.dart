@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'menu.dart';
 
-class HomePage extends StatefulWidget {
+class PersoneelSoloPage extends StatefulWidget {
   @override
-  State createState() => new HomePageState();
+  State createState() => new PersoneelSoloPageState();
 }
 
-class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
+class PersoneelSoloPageState extends State<PersoneelSoloPage> with SingleTickerProviderStateMixin{
   // Logic
   @override
   void initState() {
     super.initState();
   }
 
-  // HomePage
+  // PersoneelSoloPage
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -57,7 +57,7 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       // Textfields // INSERT PAGE STUFF HERE
-                      new Text("Home Page")
+                      new Text("PersoneelSolo Page")
                     ],
                   ),
                 ),
