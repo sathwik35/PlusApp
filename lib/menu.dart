@@ -49,7 +49,7 @@ class _MenuBarState extends State<MenuBar> {
             title: new Text('Personeel'),
             trailing: new Icon(Icons.group),
             onTap: () {
-              Navigator.pop(
+              Navigator.push(
                 context,
                 new MaterialPageRoute(builder: (context) => new PersoneelPage())
               );
@@ -59,7 +59,7 @@ class _MenuBarState extends State<MenuBar> {
             title: new Text('Account'),
             trailing: new Icon(Icons.account_circle),
             onTap: () {
-              Navigator.pop(
+              Navigator.push(
                 context,
                 new MaterialPageRoute(builder: (context) => new AccountPage())
               );

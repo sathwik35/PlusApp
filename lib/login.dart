@@ -7,17 +7,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixin{
-   // Variables
-   final scaffoldKey = new GlobalKey<ScaffoldState>();
-   final formKey = new GlobalKey<FormState>();
+  final scaffoldKey = new GlobalKey<ScaffoldState>();
+  final formKey = new GlobalKey<FormState>();
   String _username; // Private
   String _password; // Private
-
-  // Logic
-  @override
-  void initState() {
-    super.initState();
-  }
 
   void _submit() {
     final form = formKey.currentState;
@@ -26,7 +19,6 @@ class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixi
       form.save();
       
       if ((_username != "123456") || (_password != "123456")) {
-        // error
         final snackbar = new SnackBar(
           content: new Text("The inserted data is incorrect"),
         );
@@ -42,36 +34,29 @@ class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixi
     }
   }
 
-  // LoginPage
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.green,
-      body: new Stack(
-        fit: StackFit.expand,
+      backgroundColor: new Color(0xFF81BD1D),
+      body: new ListView(
         children: <Widget>[
-          // Background
           new Image(
             image: new AssetImage("assets/background.png"),
             fit: BoxFit.cover,
             // color: Colors.black87,
             // colorBlendMode: BlendMode.darken,
           ),
-          // Wrapper
           new Column(
-            mainAxisAlignment: MainAxisAlignment.center,  // Position center
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Logo
               new Image(
                 image: new AssetImage("assets/login_transparent.png"),
                 width: 200.0,
               ),
-              // Login form
               new Form(
                 key: formKey,
                 child: new Theme(
-                  // Style
                   data: new ThemeData(
                     brightness: Brightness.dark,
                     primarySwatch: Colors.teal,
@@ -87,7 +72,6 @@ class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixi
                     child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        // Textfields
                         new TextFormField(
                           decoration: new InputDecoration(
                             labelText: "Username"
@@ -111,14 +95,13 @@ class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixi
                             top: 40.0,
                           ),
                         ),
-                        // Button
                         new RaisedButton(
                           color: Colors.red,
                           textColor: Colors.white,
                           child: new Text(
                             "Login"
                           ),
-                          onPressed: _submit,  // Button click
+                          onPressed: _submit,
                           splashColor: Colors.purple, 
                         )
                       ],

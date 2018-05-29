@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'functions.dart';
 import 'menu.dart';
 
 class AccountPage extends StatefulWidget {
@@ -7,13 +8,6 @@ class AccountPage extends StatefulWidget {
 }
 
 class AccountPageState extends State<AccountPage> with SingleTickerProviderStateMixin{
-  // Logic
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  // AccountPage
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -25,10 +19,8 @@ class AccountPageState extends State<AccountPage> with SingleTickerProviderState
         ),
       ),
       backgroundColor: Colors.white,
-      body: new Stack(
-        fit: StackFit.expand,
+      body: new ListView(
         children: <Widget>[
-          // Background
           new Image(
             image: new AssetImage("assets/background.png"),
             fit: BoxFit.cover,
@@ -36,10 +28,9 @@ class AccountPageState extends State<AccountPage> with SingleTickerProviderState
             // colorBlendMode: BlendMode.darken,
           ),
           new Column(
-            mainAxisAlignment: MainAxisAlignment.center,  // Position center
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Theme(
-                // Style
                 data: new ThemeData(
                   brightness: Brightness.dark,
                   primarySwatch: Colors.teal,
@@ -50,14 +41,13 @@ class AccountPageState extends State<AccountPage> with SingleTickerProviderState
                     )
                   )
                 ),
-                // Content
                 child: new Container(
-                  padding: const EdgeInsets.all(60.0),
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      // Textfields // INSERT PAGE STUFF HERE
-                      new Text("Account Page")
+
+                      createAccount(1), // 1 = ID
+
                     ],
                   ),
                 ),

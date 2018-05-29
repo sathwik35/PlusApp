@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'functions.dart';
 import 'menu.dart';
 
 class PersoneelPage extends StatefulWidget {
@@ -7,13 +8,6 @@ class PersoneelPage extends StatefulWidget {
 }
 
 class PersoneelPageState extends State<PersoneelPage> with SingleTickerProviderStateMixin{
-  // Logic
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  // PersoneelPage
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -25,10 +19,8 @@ class PersoneelPageState extends State<PersoneelPage> with SingleTickerProviderS
         ),
       ),
       backgroundColor: Colors.white,
-      body: new Stack(
-        fit: StackFit.expand,
+      body: new ListView(
         children: <Widget>[
-          // Background
           new Image(
             image: new AssetImage("assets/background.png"),
             fit: BoxFit.cover,
@@ -36,10 +28,9 @@ class PersoneelPageState extends State<PersoneelPage> with SingleTickerProviderS
             // colorBlendMode: BlendMode.darken,
           ),
           new Column(
-            mainAxisAlignment: MainAxisAlignment.center,  // Position center
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Theme(
-                // Style
                 data: new ThemeData(
                   brightness: Brightness.dark,
                   primarySwatch: Colors.teal,
@@ -50,15 +41,26 @@ class PersoneelPageState extends State<PersoneelPage> with SingleTickerProviderS
                     )
                   )
                 ),
-                // Content
                 child: new Container(
-                  padding: const EdgeInsets.all(60.0),
+                  padding: const EdgeInsets.only(top: 10.0),
                   child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      // Textfields // INSERT PAGE STUFF HERE
-                      new Text("Personeel Page")
-                    ],
+
+                        // Staff members
+                        createPerson("1", "Henk Pieters", "0612345678", "H"),
+                        createPerson("2", "Barry Badpak", "0612345678", "B"),
+                        createPerson("3", "Kennie koken", "0612345678", "K"),
+                        createPerson("4", "Henry heggeschaar", "0612345678", "H"),
+                        createPerson("5", "Cornelis Klaase", "0612345678", "C"),
+                        createPerson("6", "Jan jansen", "0612345678", "J"),
+                        createPerson("7", "Jos Schoot", "0612345678", "J"),
+                        createPerson("8", "Ton Zijnen", "0612345678", "T"),
+                        createPerson("9", "Loesje Zijnen", "0612345678", "L"),
+                        createPerson("10", "Roosmarijn Reimers", "0612345678", "R"),
+
+                      ],
                   ),
                 ),
               )
