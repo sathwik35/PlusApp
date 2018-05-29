@@ -8,6 +8,7 @@ class RoosterPage extends StatefulWidget {
 }
 
 class RoosterPageState extends State<RoosterPage> with SingleTickerProviderStateMixin{
+    
   @override
   Widget build(BuildContext context) {
     

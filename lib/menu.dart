@@ -80,6 +80,21 @@ class _MenuBarState extends State<MenuBar> {
             trailing: new Icon(Icons.close),
             onTap: ()=>  Navigator.of(context).pop(),
           ),
+          new Divider(),
+          // new ListTile(
+          //   title: new Text('Admin'),
+          //   onTap: () {
+          //     Navigator.pop(
+          //       context,
+          //       new MaterialPageRoute(builder: (context) => new AdminPage())
+          //     );
+          //   },
+          // ),
+          new ListTile(
+            title: new Text('Admin'),
+            trailing: new Icon(Icons.lock),
+            onTap: ()=>  Navigator.of(context).pop(),
+          ),
         ],
       )
     );
