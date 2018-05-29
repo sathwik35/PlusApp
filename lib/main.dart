@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       theme: new ThemeData(
-        primarySwatch: Colors.green
+        primaryColor: new Color(0xFF81BD1D)
       ),
       home: new LoginPage(),
     );

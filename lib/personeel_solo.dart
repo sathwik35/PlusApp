@@ -7,13 +7,6 @@ class PersoneelSoloPage extends StatefulWidget {
 }
 
 class PersoneelSoloPageState extends State<PersoneelSoloPage> with SingleTickerProviderStateMixin{
-  // Logic
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  // PersoneelSoloPage
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -28,7 +21,6 @@ class PersoneelSoloPageState extends State<PersoneelSoloPage> with SingleTickerP
       body: new Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          // Background
           new Image(
             image: new AssetImage("assets/background.png"),
             fit: BoxFit.cover,
@@ -36,10 +28,9 @@ class PersoneelSoloPageState extends State<PersoneelSoloPage> with SingleTickerP
             // colorBlendMode: BlendMode.darken,
           ),
           new Column(
-            mainAxisAlignment: MainAxisAlignment.center,  // Position center
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Theme(
-                // Style
                 data: new ThemeData(
                   brightness: Brightness.dark,
                   primarySwatch: Colors.teal,
@@ -50,7 +41,6 @@ class PersoneelSoloPageState extends State<PersoneelSoloPage> with SingleTickerP
                     )
                   )
                 ),
-                // Content
                 child: new Container(
                   padding: const EdgeInsets.all(60.0),
                   child: new Column(

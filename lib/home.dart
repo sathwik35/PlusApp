@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'functions.dart';
 import 'menu.dart';
 
 class HomePage extends StatefulWidget {
@@ -7,13 +8,11 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
-  // Logic
   @override
   void initState() {
     super.initState();
   }
 
-  // HomePage
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -25,10 +24,8 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
         ),
       ),
       backgroundColor: Colors.white,
-      body: new Stack(
-        fit: StackFit.expand,
+      body: new ListView(
         children: <Widget>[
-          // Background
           new Image(
             image: new AssetImage("assets/background.png"),
             fit: BoxFit.cover,
@@ -36,10 +33,9 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
             // colorBlendMode: BlendMode.darken,
           ),
           new Column(
-            mainAxisAlignment: MainAxisAlignment.center,  // Position center
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               new Theme(
-                // Style
                 data: new ThemeData(
                   brightness: Brightness.dark,
                   primarySwatch: Colors.teal,
@@ -50,14 +46,21 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
                     )
                   )
                 ),
-                // Content
                 child: new Container(
-                  padding: const EdgeInsets.all(60.0),
+                  padding: const EdgeInsets.only(top: 5.0),
                   child: new Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      // Textfields // INSERT PAGE STUFF HERE
-                      new Text("Home Page")
+
+                      // Request
+                      createRequest("1", "Kees", "Woensdag 25-04-18", "18:00", "21:00"),
+                      //createRequest("2", "Harry", "Donderdag 26-04-18", "9:00", "18:00"),
+                      
+                      // Notification
+                      createNotification("26-04-18 12:00", "Zoals jullie zien is het nieuwe rooster toegevoegd. Let er op dat vrijdag 27 april het rooster er iets anders uit ziet vanwege koningsdag.", "Joost"),
+
+                      // Update
+                      createUpdate("26-04-18 12:00", "Er is een nieuw rooster beschikbaar. Klik op de rooster tab in het menu om het rooster te kunnen bekijken."),
+
                     ],
                   ),
                 ),
