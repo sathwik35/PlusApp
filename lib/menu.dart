@@ -3,6 +3,7 @@ import 'home.dart';
 import 'rooster.dart';
 import 'personeel.dart';
 import 'account.dart';
+import 'admin.dart'; 
 
 class MenuBar extends StatefulWidget {
   @override
@@ -76,9 +77,15 @@ class _MenuBarState extends State<MenuBar> {
           //   },
           // ),
           new ListTile(
-            title: new Text('Close'),
-            trailing: new Icon(Icons.close),
-            onTap: ()=>  Navigator.of(context).pop(),
+            title: new Text('Admin'),
+            trailing: new Icon(Icons.lock),
+            onTap: () {
+              ()=>  Navigator.of(context).pop();
+              Navigator.push(
+                context,
+                new MaterialPageRoute(builder: (context) => new AdminPage())
+              );
+            },
           ),
           new Divider(),
           // new ListTile(
@@ -91,8 +98,13 @@ class _MenuBarState extends State<MenuBar> {
           //   },
           // ),
           new ListTile(
-            title: new Text('Admin'),
-            trailing: new Icon(Icons.lock),
+            title: new Text('Logout'),
+            trailing: new Icon(Icons.exit_to_app),
+            onTap: ()=>  Navigator.of(context).pop(),
+          ),
+          new ListTile(
+            title: new Text('Close'),
+            trailing: new Icon(Icons.close),
             onTap: ()=>  Navigator.of(context).pop(),
           ),
         ],
