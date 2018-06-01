@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,7 +17,7 @@ class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixi
   void _submit() {
     final form = formKey.currentState;
 
-    if(form.validate()) { // If no validation errors occured
+    if(form.validate()) { // If no validation errors occurred
       form.save();
       
       if ((_username != "123456") || (_password != "123456")) {
@@ -78,7 +80,7 @@ class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixi
                           ),
                           keyboardType: TextInputType.text,
                           //validator: (val)=> !val.contains("@")?"Invalid Email":null, // INPUT CHECKER
-                          validator: (val)=> val.length<6?"Username is too short":null, // Lenght checker
+                          validator: (val)=> val.length<6?"Username is too short":null, // Length checker
                           onSaved: (val)=> _username = val, // Save Data
                         ),
                         new TextFormField(
@@ -87,7 +89,7 @@ class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixi
                           ),
                           keyboardType: TextInputType.text,
                           obscureText: true,  // replace input with ****
-                          validator: (val)=> val.length<6?"Password is too short":null, // Lenght checker
+                          validator: (val)=> val.length<6?"Password is too short":null, // Length checker
                           onSaved: (val)=> _password = val, // Save Data
                         ),
                         new Padding(
