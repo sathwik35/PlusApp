@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'functions.dart';
 import 'menu.dart';
-import 'personeeledit.dart';
-import 'roosteredit.dart';
-import 'mededeling.dart';
-import 'invallen.dart';
-
 
 class AdminPage extends StatefulWidget {
   @override
@@ -242,13 +236,49 @@ class Medewerkers extends StatelessWidget {
         title: new Text("Medewerkers"),
       ),
       body: new Center(
-        child: new RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: new Text("Push me"),
+        child: new Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+
+            new TextFormField(
+              decoration: new InputDecoration(
+                labelText: 'Voor en achternaam' //Gebruikersnaam is hier aan gelijk
+              ),
+            ),
+
+            new TextFormField(
+              decoration: new InputDecoration(
+                labelText: 'Wachtwoord'
+              ),
+            ),
+            
+            new TextFormField(
+              decoration: new InputDecoration(
+                labelText: 'Afdeling' //hier moet een dropdown komen met keuzes
+              ),
+            ),
+
+            new TextFormField(
+              decoration: new InputDecoration(
+                labelText: 'Functie'  //hier moet een dropdown komen met keuzes
+              ),
+            ),
+
+            new TextFormField(
+              decoration: new InputDecoration(
+                labelText: 'Mobiel nummer'
+              ),
+            ),
+
+            new TextFormField(
+              decoration: new InputDecoration(
+                labelText: 'Email adres'
+              ),
+            ),
+
+          ],
         ),
-      ),
+      )
     );
   }
 }
