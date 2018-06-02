@@ -13,15 +13,17 @@ class MenuBar extends StatefulWidget {
 class _MenuBarState extends State<MenuBar> {
   @override
   Widget build(BuildContext context) {
+    var uname = "Tim Oldenburger";
+    var functie = "Vulploegleider";
     return new Drawer(
       child: new ListView(
         children: <Widget> [
           new UserAccountsDrawerHeader(
-            accountName: new Text("User name"),
-            accountEmail: new Text("Vakkenvuller"),
+            accountName: new Text(uname),
+            accountEmail: new Text(functie),
             currentAccountPicture: new CircleAvatar(
               backgroundColor: Colors.white,
-              child: new Text("U"),
+              child: new Text("T"),
             ),
           ),
           new ListTile(
@@ -66,27 +68,32 @@ class _MenuBarState extends State<MenuBar> {
               );
             },
           ),
-          new Divider(),
-          // new ListTile(
-          //   title: new Text('Admin'),
-          //   onTap: () {
-          //     Navigator.pop(
-          //       context,
-          //       new MaterialPageRoute(builder: (context) => new AdminPage())
-          //     );
-          //   },
-          // ),
-          new ListTile(
-            title: new Text('Admin'),
-            trailing: new Icon(Icons.lock),
-            onTap: () {
-              ()=>  Navigator.of(context).pop();
-              Navigator.push(
-                context,
-                new MaterialPageRoute(builder: (context) => new AdminPage())
-              );
-            },
-          ),
+          
+          // if (functie == "Vulploegleider" || functie == "KW manager") {}
+            new Divider(),
+            // new ListTile(
+            //   title: new Text('Admin'),
+            //   onTap: () {
+            //     Navigator.pop(
+            //       context,
+            //       new MaterialPageRoute(builder: (context) => new AdminPage())
+            //     );
+            //   },
+            // ),
+            new ListTile(
+              title: new Text('Admin'),
+              trailing: new Icon(Icons.lock),
+              enabled: functie == "Vulploegleider" || functie == "KW manager",
+              onTap: () {
+                ()=>  Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => new AdminPage())
+                );
+              },
+            ),
+            
+          
           new Divider(),
           // new ListTile(
           //   title: new Text('Admin'),
