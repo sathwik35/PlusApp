@@ -43,12 +43,6 @@ class LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixi
       backgroundColor: new Color(0xFF81BD1D),
       body: new ListView(
         children: <Widget>[
-          new Image(
-            image: new AssetImage("assets/background.png"),
-            fit: BoxFit.cover,
-            // color: Colors.black87,
-            // colorBlendMode: BlendMode.darken,
-          ),
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

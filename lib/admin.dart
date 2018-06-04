@@ -45,7 +45,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              return new Medewerkers();
+                              return new MedewerkersAdd();
                             }
                           ));
                         },
@@ -57,7 +57,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              return new Medewerkers();
+                              return new MedewerkersEdit();
                             }
                           ));
                         },
@@ -69,7 +69,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              return new Medewerkers();
+                              return new MedewerkersDelete();
                             }
                           ));
                         },
@@ -143,7 +143,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
               children: <Widget>[
                 const ListTile(
                   leading: const Icon(Icons.message),
-                  title: const Text('Mededeling aanmaken'),
+                  title: const Text('Mededelingen'),
                   subtitle: const Text('Stuur een bericht naar alle werknemers binnen de afdeling'),
                 ),
                 new ButtonTheme.bar( // make buttons use the appropriate styles for cards
@@ -228,60 +228,308 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
   }
 }
 
-class Medewerkers extends StatelessWidget {
+class MedewerkersAdd extends StatefulWidget {
   @override
+  State createState() => new MedewerkersAddState();
+}
+
+class MedewerkersAddState extends State<MedewerkersAdd> {
+  String _fullname;
+  String _wachtwoord;
+  String _afdeling;
+  String _functie;
+
+  List<String> _afdelingen = new List<String>();
+  List<String> _functies = new List<String>();
+  
+  @override
+  void initState() {
+    _afdelingen.addAll(["KW", "AGF", "Vers", "Kassa", "E-commerce", "Opleiding", "Overig"]);
+    _afdeling = _afdelingen.elementAt(0);
+
+    _functies.addAll(["KW manager", "Vulploegleider", "Magazijnmedewerker", "Vakkenvuller", "Overig"]);
+    _functie = _functies.elementAt(0);
+  }
+  
+  void _onChangedAfd(String afdeling) {
+    setState(() {
+      _afdeling = afdeling;
+    });
+  }
+
+  void _onChangedFun(String functie) {
+    setState(() {
+      _functie = functie;
+    });
+  }
+
+  void _submit() {
+    
+  }
+
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Medewerkers"),
+        title: new Text("Medewerkers toevoegen"),
       ),
-      body: new Center(
-        child: new Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-
-            new TextFormField(
-              decoration: new InputDecoration(
-                labelText: 'Voor en achternaam' //Gebruikersnaam is hier aan gelijk
-              ),
+      body: new ListView(
+        children: <Widget>[
+          new Padding(
+            padding: const EdgeInsets.fromLTRB(
+              25.0, 10.0, 25.0, 0.0
             ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Voornaam'
+                  ),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _fullname = val,
+                ),
 
-            new TextFormField(
-              decoration: new InputDecoration(
-                labelText: 'Wachtwoord'
-              ),
-            ),
-            
-            new TextFormField(
-              decoration: new InputDecoration(
-                labelText: 'Afdeling' //hier moet een dropdown komen met keuzes
-              ),
-            ),
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Achternaam'
+                  ),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _fullname = val,
+                ),
 
-            new TextFormField(
-              decoration: new InputDecoration(
-                labelText: 'Functie'  //hier moet een dropdown komen met keuzes
-              ),
-            ),
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Gebruikersnaam'
+                  ),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _fullname = val,
+                ),
 
-            new TextFormField(
-              decoration: new InputDecoration(
-                labelText: 'Mobiel nummer'
-              ),
-            ),
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Wachtwoord'
+                  ),
+                  obscureText: true,  // replace input with ****
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _fullname = val,
+                ),
 
-            new TextFormField(
-              decoration: new InputDecoration(
-                labelText: 'Email adres'
-              ),
-            ),
+                new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Text(
+                      'Afdeling: ',
+                      style: new TextStyle(fontSize: 17.0),
+                    ),
+                    new DropdownButton(
+                      value: _afdeling,
+                      items: _afdelingen.map((String value){
+                        return new DropdownMenuItem(
+                          value: value,
+                          child: new Row(
+                            children: <Widget>[          
+                              new Text('$value')
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String afdeling) {_onChangedAfd(afdeling);},
+                    ),
+                  ],
+                ),
 
-          ],
-        ),
-      )
+                new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Text(
+                      'Functie: ',
+                      style: new TextStyle(fontSize: 17.0),
+                    ),
+                    new DropdownButton(
+                      value: _functie,
+                      items: _functies.map((String value){
+                        return new DropdownMenuItem(
+                          value: value,
+                          child: new Row(
+                            children: <Widget>[          
+                              new Text('$value')
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String functie) {_onChangedFun(functie);},
+                    ),
+                  ],
+                ),
+
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Mobiel nummer'
+                  ),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _fullname = val,
+                ),
+
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Email adres'
+                  ),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _fullname = val,
+                ),
+
+                new Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40.0,
+                  ),
+                ),
+
+                new RaisedButton(
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  child: new Text(
+                    "Opslaan"
+                  ),
+                  onPressed: _submit,
+                  splashColor: Colors.purple, 
+                )
+              ],
+            ),
+          ),
+        ]
+      ),
     );
   }
 }
+
+class MedewerkersEdit extends StatefulWidget {
+  @override
+  State createState() => new MedewerkersEditState();
+}
+
+class MedewerkersEditState extends State<MedewerkersEdit> {
+  String _search;
+
+  List<String> _afdelingen = new List<String>();
+  List<String> _functies = new List<String>();
+  
+  @override
+  void _submit() {
+    
+  }
+
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Medewerkers wijzigen"),
+      ),
+      body: new ListView(
+        children: <Widget>[
+          new Padding(
+            padding: const EdgeInsets.fromLTRB(
+              25.0, 10.0, 25.0, 0.0
+            ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Zoek op naam'
+                  ),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _search = val,
+                ),
+
+                new Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40.0,
+                  ),
+                ),
+
+                new RaisedButton(
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  child: new Text(
+                    "Zoeken"
+                  ),
+                  onPressed: _submit,
+                  splashColor: Colors.purple, 
+                )
+
+              ],
+            ),
+          ),
+        ]
+      ),
+    );
+  }
+}
+
+class MedewerkersDelete extends StatefulWidget {
+  @override
+  State createState() => new MedewerkersDeleteState();
+}
+
+class MedewerkersDeleteState extends State<MedewerkersDelete> {
+   String _search;
+
+  List<String> _afdelingen = new List<String>();
+  List<String> _functies = new List<String>();
+  
+  @override
+  void _submit() {
+    
+  }
+
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Medewerkers verwijderen"),
+      ),
+      body: new ListView(
+        children: <Widget>[
+          new Padding(
+            padding: const EdgeInsets.fromLTRB(
+              25.0, 10.0, 25.0, 0.0
+            ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Zoek op naam'
+                  ),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _search = val,
+                ),
+
+                new Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40.0,
+                  ),
+                ),
+
+                new RaisedButton(
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  child: new Text(
+                    "Zoeken"
+                  ),
+                  onPressed: _submit,
+                  splashColor: Colors.purple, 
+                )
+
+              ],
+            ),
+          ),
+        ]
+      ),
+    );
+  }
+}
+
 class Roosters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -336,3 +584,4 @@ class Inval extends StatelessWidget {
     );
   }
 }
+
