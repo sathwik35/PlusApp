@@ -26,6 +26,12 @@ class _MenuBarState extends State<MenuBar> {
               backgroundColor: Colors.white,
               child: new Text("T"),
             ),
+            onDetailsPressed: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => new AccountPage())
+              );
+            },
           ),
           new ListTile(
             title: new Text('Startpagina'),
@@ -56,16 +62,6 @@ class _MenuBarState extends State<MenuBar> {
               Navigator.push(
                 context,
                 new MaterialPageRoute(builder: (context) => new PersoneelPage())
-              );
-            },
-          ),
-          new ListTile(
-            title: new Text('Account'),
-            trailing: new Icon(Icons.account_circle),
-            onTap: () {
-              Navigator.push(
-                context,
-                new MaterialPageRoute(builder: (context) => new AccountPage())
               );
             },
           ),
