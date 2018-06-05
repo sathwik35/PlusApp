@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'menu.dart';
 
+String _action;
+
 class AdminPage extends StatefulWidget {
   @override
   State createState() => new AdminPageState();
@@ -45,6 +47,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
+                              _action = "toevoegen";
                               return new MedewerkersAdd();
                             }
                           ));
@@ -57,7 +60,8 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              return new MedewerkersEdit();
+                              _action = "wijzigen";
+                              return new MedewerkersSearch();
                             }
                           ));
                         },
@@ -69,6 +73,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
+                              _action = "verwijderen";
                               return new MedewerkersDelete();
                             }
                           ));
@@ -241,7 +246,7 @@ class MedewerkersAddState extends State<MedewerkersAdd> {
 
   List<String> _afdelingen = new List<String>();
   List<String> _functies = new List<String>();
-  
+    
   @override
   void initState() {
     _afdelingen.addAll(["KW", "AGF", "Vers", "Kassa", "E-commerce", "Opleiding", "Overig"]);
@@ -270,7 +275,7 @@ class MedewerkersAddState extends State<MedewerkersAdd> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Medewerkers toevoegen"),
+        title: new Text("Medewerker $_action"),
       ),
       body: new ListView(
         children: <Widget>[
@@ -402,12 +407,12 @@ class MedewerkersAddState extends State<MedewerkersAdd> {
   }
 }
 
-class MedewerkersEdit extends StatefulWidget {
+class MedewerkersSearch extends StatefulWidget {
   @override
-  State createState() => new MedewerkersEditState();
+  State createState() => new MedewerkersSearchState();
 }
 
-class MedewerkersEditState extends State<MedewerkersEdit> {
+class MedewerkersSearchState extends State<MedewerkersSearch> {
   String _search;
   
   @override
@@ -418,7 +423,7 @@ class MedewerkersEditState extends State<MedewerkersEdit> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Medewerkers wijzigen"),
+        title: new Text("Medewerker zoeken"),
       ),
       body: new ListView(
         children: <Widget>[
@@ -450,8 +455,14 @@ class MedewerkersEditState extends State<MedewerkersEdit> {
                   child: new Text(
                     "Zoeken"
                   ),
-                  onPressed: _submit,
-                  splashColor: Colors.purple, 
+                  onPressed: () { 
+                    Navigator.push(
+                      context,
+                      new MaterialPageRoute(builder: (context) {
+                        return new MedewerkersAdd();
+                      }),
+                    );
+                  } 
                 )
 
               ],
