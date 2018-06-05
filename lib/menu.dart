@@ -4,6 +4,7 @@ import 'rooster.dart';
 import 'personeel.dart';
 import 'account.dart';
 import 'admin.dart';
+import 'vervang.dart';
 
 class MenuBar extends StatefulWidget {
   @override
@@ -57,6 +58,16 @@ class _MenuBarState extends State<MenuBar> {
                 context,
                 new MaterialPageRoute(
                     builder: (context) => new PersoneelPage()));
+          },
+        ),
+        new ListTile(
+          title: new Text('Vervanging aanvragen'),
+          trailing: new Icon(Icons.cached),
+          onTap: () {
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new VervangPage()));
           },
         ),
         new Divider(),
