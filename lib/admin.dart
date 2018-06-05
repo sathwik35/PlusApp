@@ -87,9 +87,52 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 const ListTile(
+                  leading: const Icon(Icons.message),
+                  title: const Text('Mededelingen'),
+                  subtitle: const Text('Stuur een bericht naar alle werknemers binnen de afdeling'),
+                ),
+                new ButtonTheme.bar( // make buttons use the appropriate styles for cards
+                  child: new ButtonBar(
+                    children: <Widget>[
+                      new FlatButton(
+                        child: const Text('AANMAKEN'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            new MaterialPageRoute(builder: (context) {
+                              return new Mededeling();
+                            }
+                          ));
+                        },
+                        textColor: Color(0xff207645),
+                      ),
+                      new FlatButton(
+                        child: const Text('VERWIJDEREN'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            new MaterialPageRoute(builder: (context) {
+                              return new Mededeling();
+                            }
+                          ));
+                        },
+                        textColor: Color(0xffe23a3a),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          
+          new Card(
+            child: new Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const ListTile(
                   leading: const Icon(Icons.edit),
-                  title: const Text('Roosters'),
-                  subtitle: const Text('Een rooster toevoegen aan een medewerker, het rooster wijzigen en verwijderen'),
+                  title: const Text('Vervanging rooster'),
+                  subtitle: const Text('Een rooster waar overzichtelijk per dag staat aangegeven wie er werkt en wie dus niet'),
                 ),
                 new ButtonTheme.bar( // make buttons use the appropriate styles for cards
                   child: new ButtonBar(
@@ -136,49 +179,6 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
               ],
             ),
           ),
-          
-           new Card(
-            child: new Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const ListTile(
-                  leading: const Icon(Icons.message),
-                  title: const Text('Mededelingen'),
-                  subtitle: const Text('Stuur een bericht naar alle werknemers binnen de afdeling'),
-                ),
-                new ButtonTheme.bar( // make buttons use the appropriate styles for cards
-                  child: new ButtonBar(
-                    children: <Widget>[
-                      new FlatButton(
-                        child: const Text('AANMAKEN'),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            new MaterialPageRoute(builder: (context) {
-                              return new Mededeling();
-                            }
-                          ));
-                        },
-                        textColor: Color(0xff207645),
-                      ),
-                      new FlatButton(
-                        child: const Text('VERWIJDEREN'),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            new MaterialPageRoute(builder: (context) {
-                              return new Mededeling();
-                            }
-                          ));
-                        },
-                        textColor: Color(0xffe23a3a),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
 
           new Card(
             child: new Column(
@@ -187,7 +187,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                 const ListTile(
                   leading: const Icon(Icons.cached),
                   title: const Text('Inval lijst'),
-                  subtitle: const Text('Een overzicht van de vakkenvullers en wanneer ze voor wie hebben ingevallen'),
+                  subtitle: const Text('Een lijst van de vakkenvullers waar per persoon staat aangegeven hoe actief ze zijn in het vervangen van anderen'),
                 ),
                 new ButtonTheme.bar( // make buttons use the appropriate styles for cards
                   child: new ButtonBar(
@@ -530,20 +530,57 @@ class MedewerkersDeleteState extends State<MedewerkersDelete> {
   }
 }
 
-class Roosters extends StatelessWidget {
+class MededelingAdd extends StatefulWidget {
   @override
+  State createState() => new MededelingAddState();
+}
+
+class MededelingAddState extends State<MededelingAdd> {
+  @override
+  void _sumbit() {
+
+  }
+
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Roosters"),
+        title: new Text("Mededeling aanmaken"),
       ),
-      body: new Center(
-        child: new RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: new Text("Push me"),
-        ),
+      body: new ListView(
+        children: <Widget>[
+          new Padding(
+            padding: const EdgeInsets.fromLTRB(
+              25.0, 10.0, 25.0, 0.0
+            ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+
+                new TextField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 5,
+                ),
+
+                new Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40.0,
+                  ),
+                ),
+
+                new RaisedButton(
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  child: new Text(
+                    "Aanmaken"
+                  ),
+                  onPressed: _submit(),
+                  splashColor: Colors.purple, 
+                )
+
+              ],
+            ),
+          ),
+        ]       
       ),
     );
   }
