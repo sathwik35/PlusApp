@@ -100,7 +100,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              return new Mededeling();
+                              return new MededelingAdd();
                             }
                           ));
                         },
@@ -112,7 +112,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              return new Mededeling();
+                              return new MededelingDelete();
                             }
                           ));
                         },
@@ -143,7 +143,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              return new Roosters();
+                              return new VervangingAdd();
                             }
                           ));  
                         },
@@ -155,7 +155,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              return new Roosters();
+                              return new VervangingEdit();
                             }
                           ));
                         },
@@ -167,7 +167,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              return new Roosters();
+                              return new VervangingDelete();
                             }
                           ));
                         },
@@ -198,7 +198,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              return new Inval();
+                              return new InvalShow();
                             }
                           ));
                         },
@@ -210,7 +210,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              return new Inval();
+                              return new InvalEdit();
                             }
                           ));
                         },
@@ -409,9 +409,6 @@ class MedewerkersEdit extends StatefulWidget {
 
 class MedewerkersEditState extends State<MedewerkersEdit> {
   String _search;
-
-  List<String> _afdelingen = new List<String>();
-  List<String> _functies = new List<String>();
   
   @override
   void _submit() {
@@ -473,9 +470,6 @@ class MedewerkersDelete extends StatefulWidget {
 
 class MedewerkersDeleteState extends State<MedewerkersDelete> {
    String _search;
-
-  List<String> _afdelingen = new List<String>();
-  List<String> _functies = new List<String>();
   
   @override
   void _submit() {
@@ -537,7 +531,7 @@ class MededelingAdd extends StatefulWidget {
 
 class MededelingAddState extends State<MededelingAdd> {
   @override
-  void _sumbit() {
+  void _submit() {
 
   }
 
@@ -573,7 +567,7 @@ class MededelingAddState extends State<MededelingAdd> {
                   child: new Text(
                     "Aanmaken"
                   ),
-                  onPressed: _submit(),
+                  onPressed: _submit,
                   splashColor: Colors.purple, 
                 )
 
@@ -585,40 +579,279 @@ class MededelingAddState extends State<MededelingAdd> {
     );
   }
 }
-class Mededeling extends StatelessWidget {
+
+class MededelingDelete extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Mededeling"),
-      ),
-      body: new Center(
-        child: new RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: new Text("Push me"),
-        ),
-      ),
-    );
-  }
+  State createState() => new MededelingDeleteState();
 }
-class Inval extends StatelessWidget {
+
+class MededelingDeleteState extends State<MededelingDelete> {
   @override
+  void _submit() {
+
+  }
+
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Inval lijst"),
+        title: new Text("Mededeling verwijderen"),
       ),
-      body: new Center(
-        child: new RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: new Text("Push me"),
-        ),
+      body: new ListView(
+        children: <Widget>[
+          new Padding(
+            padding: const EdgeInsets.fromLTRB(
+              25.0, 10.0, 25.0, 0.0
+            ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+
+                // iets waarmee je een mededeling kan selecteren en verwijderen
+
+                new Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40.0,
+                  ),
+                ),
+
+                new RaisedButton(
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  child: new Text(
+                    "Verwijderen"
+                  ),
+                  onPressed: _submit,
+                  splashColor: Colors.purple, 
+                )
+
+              ],
+            ),
+          ),
+        ]       
       ),
     );
   }
 }
 
+class VervangingAdd extends StatefulWidget {
+  @override
+  State createState() => new VervangingAddState();
+}
+
+class VervangingAddState extends State<VervangingAdd> {
+  @override
+  void _submit() {
+
+  }
+
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Vervanging aanmaken"),
+      ),
+      body: new ListView(
+        children: <Widget>[
+          new Padding(
+            padding: const EdgeInsets.fromLTRB(
+              25.0, 10.0, 25.0, 0.0
+            ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+
+                new TextField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 5,
+                ),
+
+                new Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40.0,
+                  ),
+                ),
+
+                new RaisedButton(
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  child: new Text(
+                    "Aanmaken"
+                  ),
+                  onPressed: _submit,
+                  splashColor: Colors.purple, 
+                )
+
+              ],
+            ),
+          ),
+        ]       
+      ),
+    );
+  }
+}
+
+class VervangingEdit extends StatefulWidget {
+  @override
+  State createState() => new VervangingEditState();
+}
+
+class VervangingEditState extends State<VervangingEdit> {
+  @override
+  void _submit() {
+
+  }
+
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Vervanging wijzigen"),
+      ),
+      body: new ListView(
+        children: <Widget>[
+          new Padding(
+            padding: const EdgeInsets.fromLTRB(
+              25.0, 10.0, 25.0, 0.0
+            ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+
+                
+
+              ],
+            ),
+          ),
+        ]       
+      ),
+    );
+  }
+}
+
+class VervangingDelete extends StatefulWidget {
+  @override
+  State createState() => new VervangingDeleteState();
+}
+
+class VervangingDeleteState extends State<VervangingDelete> {
+  @override
+  void _submit() {
+
+  }
+
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Vervanging verwijderen"),
+      ),
+      body: new ListView(
+        children: <Widget>[
+          new Padding(
+            padding: const EdgeInsets.fromLTRB(
+              25.0, 10.0, 25.0, 0.0
+            ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+
+                
+
+              ],
+            ),
+          ),
+        ]       
+      ),
+    );
+  }
+}
+
+class InvalShow extends StatefulWidget {
+  @override
+  State createState() => new InvalShowState();
+}
+
+class InvalShowState extends State<InvalShow> {
+  @override
+  void _submit() {
+
+  }
+
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Inval lijst bekijken"),
+      ),
+      body: new ListView(
+        children: <Widget>[
+          new Padding(
+            padding: const EdgeInsets.fromLTRB(
+              25.0, 10.0, 25.0, 0.0
+            ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+
+                
+
+              ],
+            ),
+          ),
+        ]       
+      ),
+    );
+  }
+}
+
+class InvalEdit extends StatefulWidget {
+  @override
+  State createState() => new InvalEditState();
+}
+
+class InvalEditState extends State<InvalEdit> {
+  @override
+  void _submit() {
+
+  }
+
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Inval lijst wijzigen"),
+      ),
+      body: new ListView(
+        children: <Widget>[
+          new Padding(
+            padding: const EdgeInsets.fromLTRB(
+              25.0, 10.0, 25.0, 0.0
+            ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+
+                new TextField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 5,
+                ),
+
+                new Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40.0,
+                  ),
+                ),
+
+                new RaisedButton(
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  child: new Text(
+                    "Aanmaken"
+                  ),
+                  onPressed: _submit,
+                  splashColor: Colors.purple, 
+                )
+
+              ],
+            ),
+          ),
+        ]       
+      ),
+    );
+  }
+}
