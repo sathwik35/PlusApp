@@ -93,11 +93,6 @@ class _MenuBarState extends State<MenuBar> {
             trailing: new Icon(Icons.exit_to_app),
             onTap: ()=>  Navigator.of(context).pop(),
           ),
-          new ListTile(
-            title: new Text('Sluiten'),
-            trailing: new Icon(Icons.close),
-            onTap: ()=>  Navigator.of(context).pop(),
-          ),
         ],
       )
     );
