@@ -12,7 +12,6 @@ class AccountPageState extends State<AccountPage>
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      drawer: new MenuBar(),
       appBar: new AppBar(
         title: new Image(
             image: new AssetImage("assets/menu.png"), fit: BoxFit.cover),
