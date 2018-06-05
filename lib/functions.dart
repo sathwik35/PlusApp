@@ -54,7 +54,7 @@ Widget createRequest(_replacementRequestID, _replacementRequestName, _replacemen
                   child: new Text(
                     "Ik kan werken!"
                   ),
-                  onPressed: ()=> print("Accept: $_replacementRequestID"),  // Button click (ACCEPT)
+                  onPressed: ()=> print("Accept: $_replacementRequestID"),
                   splashColor: Colors.purple, 
                 ),
               ],
@@ -68,7 +68,7 @@ Widget createRequest(_replacementRequestID, _replacementRequestName, _replacemen
                   child: new Text(
                     "Ik kan niet werken"
                   ),
-                  onPressed: ()=> print("cancel: $_replacementRequestID"),  // Button click (DENY)
+                  onPressed: ()=> print("cancel: $_replacementRequestID"),
                   splashColor: Colors.purple, 
                 )
               ],

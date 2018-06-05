@@ -7,16 +7,15 @@ class PersoneelPage extends StatefulWidget {
   State createState() => new PersoneelPageState();
 }
 
-class PersoneelPageState extends State<PersoneelPage> with SingleTickerProviderStateMixin{
+class PersoneelPageState extends State<PersoneelPage>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       drawer: new MenuBar(),
       appBar: new AppBar(
         title: new Image(
-          image: new AssetImage("assets/menu.png"),
-          fit: BoxFit.cover
-        ),
+            image: new AssetImage("assets/menu.png"), fit: BoxFit.cover),
       ),
       backgroundColor: Colors.white,
       body: new ListView(
@@ -24,43 +23,34 @@ class PersoneelPageState extends State<PersoneelPage> with SingleTickerProviderS
           new Image(
             image: new AssetImage("assets/background.png"),
             fit: BoxFit.cover,
-            // color: Colors.black87,
-            // colorBlendMode: BlendMode.darken,
           ),
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Theme(
                 data: new ThemeData(
-                  brightness: Brightness.dark,
-                  primarySwatch: Colors.teal,
-                  inputDecorationTheme: new InputDecorationTheme(
-                    labelStyle: new TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0
-                    )
-                  )
-                ),
+                    brightness: Brightness.dark,
+                    primarySwatch: Colors.teal,
+                    inputDecorationTheme: new InputDecorationTheme(
+                        labelStyle: new TextStyle(
+                            color: Colors.white, fontSize: 20.0))),
                 child: new Container(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: new Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-
-                        // Staff members
-                        createPerson("1", "Henk Pieters", "0612345678", "H"),
-                        createPerson("2", "Barry Badpak", "0612345678", "B"),
-                        createPerson("3", "Kennie koken", "0612345678", "K"),
-                        createPerson("4", "Henry heggeschaar", "0612345678", "H"),
-                        createPerson("5", "Cornelis Klaase", "0612345678", "C"),
-                        createPerson("6", "Jan jansen", "0612345678", "J"),
-                        createPerson("7", "Jos Schoot", "0612345678", "J"),
-                        createPerson("8", "Ton Zijnen", "0612345678", "T"),
-                        createPerson("9", "Loesje Zijnen", "0612345678", "L"),
-                        createPerson("10", "Roosmarijn Reimers", "0612345678", "R"),
-
-                      ],
+                      createPerson("1", "Henk Pieters", "0612345678", "H"),
+                      createPerson("2", "Barry Badpak", "0612345678", "B"),
+                      createPerson("3", "Kennie koken", "0612345678", "K"),
+                      createPerson("4", "Henry heggeschaar", "0612345678", "H"),
+                      createPerson("5", "Cornelis Klaase", "0612345678", "C"),
+                      createPerson("6", "Jan jansen", "0612345678", "J"),
+                      createPerson("7", "Jos Schoot", "0612345678", "J"),
+                      createPerson("8", "Ton Zijnen", "0612345678", "T"),
+                      createPerson("9", "Loesje Zijnen", "0612345678", "L"),
+                      createPerson("10", "Roosmarijn Reimers", "0612345678", "R"),
+                    ],
                   ),
                 ),
               )
@@ -73,9 +63,9 @@ class PersoneelPageState extends State<PersoneelPage> with SingleTickerProviderS
 
   Widget createPerson(_personID, _personName, _personPhone, _personImage) {
     return new Container(
-      padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0, bottom: 5.0),
-      child: new Column(
-        children: <Widget>[
+        padding: const EdgeInsets.only(
+            left: 20.0, right: 20.0, top: 5.0, bottom: 5.0),
+        child: new Column(children: <Widget>[
           new Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -103,11 +93,10 @@ class PersoneelPageState extends State<PersoneelPage> with SingleTickerProviderS
                       icon: new Icon(Icons.play_circle_filled),
                       onPressed: () {
                         Navigator.push(
-                        context,
-                        new MaterialPageRoute(builder: (context) => 
-                          new UserInfo(),
-                        
-                      ));
+                            context,
+                            new MaterialPageRoute(
+                              builder: (context) => new UserInfo(),
+                            ));
                       },
                     )
                   ],
@@ -119,9 +108,7 @@ class PersoneelPageState extends State<PersoneelPage> with SingleTickerProviderS
             color: Colors.black,
             height: 1.0,
           ),
-        ]
-      )
-    );
+        ]));
   }
 }
 
@@ -132,9 +119,7 @@ class UserInfo extends StatelessWidget {
       drawer: new MenuBar(),
       appBar: new AppBar(
         title: new Image(
-          image: new AssetImage("assets/menu.png"),
-          fit: BoxFit.cover
-        ),
+            image: new AssetImage("assets/menu.png"), fit: BoxFit.cover),
       ),
       backgroundColor: Colors.white,
       body: new ListView(
@@ -142,30 +127,22 @@ class UserInfo extends StatelessWidget {
           new Image(
             image: new AssetImage("assets/background.png"),
             fit: BoxFit.cover,
-            // color: Colors.black87,
-            // colorBlendMode: BlendMode.darken,
           ),
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Theme(
                 data: new ThemeData(
-                  brightness: Brightness.dark,
-                  primarySwatch: Colors.teal,
-                  inputDecorationTheme: new InputDecorationTheme(
-                    labelStyle: new TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0
-                    )
-                  )
-                ),
+                    brightness: Brightness.dark,
+                    primarySwatch: Colors.teal,
+                    inputDecorationTheme: new InputDecorationTheme(
+                        labelStyle: new TextStyle(
+                            color: Colors.white, fontSize: 20.0))),
                 child: new Container(
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-
-                      userInfo(1), //TODO maak '1' het id van de medewerker
-
+                      userInfo(1), //TODO: Set user ID to variable
                     ],
                   ),
                 ),
@@ -177,11 +154,3 @@ class UserInfo extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
