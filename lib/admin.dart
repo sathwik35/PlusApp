@@ -20,14 +20,12 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
           fit: BoxFit.cover
         ),
       ),
-      backgroundColor: Colors.white, // grey[300]
+      backgroundColor: Colors.white,
       body: new ListView(
         children: <Widget>[
           new Image(
             image: new AssetImage("assets/background.png"),
             fit: BoxFit.cover,
-            // color: Colors.black87,
-            // colorBlendMode: BlendMode.darken,
           ),
           new Card(
             child: new Column(
@@ -38,7 +36,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                   title: const Text('Medewerkers'),
                   subtitle: const Text('Een medewerker aanmaken, gegevens aanpassen, of de medewerker verwijderen'),
                 ),
-                new ButtonTheme.bar( // make buttons use the appropriate styles for cards
+                new ButtonTheme.bar(
                   child: new ButtonBar(
                     children: <Widget>[
                       new FlatButton(
@@ -96,7 +94,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                   title: const Text('Mededelingen'),
                   subtitle: const Text('Stuur een bericht naar alle werknemers binnen de afdeling'),
                 ),
-                new ButtonTheme.bar( // make buttons use the appropriate styles for cards
+                new ButtonTheme.bar(
                   child: new ButtonBar(
                     children: <Widget>[
                       new FlatButton(
@@ -139,7 +137,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                   title: const Text('Vervanging rooster'),
                   subtitle: const Text('Een rooster waar overzichtelijk per dag staat aangegeven wie er werkt en wie dus niet'),
                 ),
-                new ButtonTheme.bar( // make buttons use the appropriate styles for cards
+                new ButtonTheme.bar(
                   child: new ButtonBar(
                     children: <Widget>[
                       new FlatButton(
@@ -194,7 +192,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                   title: const Text('Inval lijst'),
                   subtitle: const Text('Een lijst van de vakkenvullers waar per persoon staat aangegeven hoe actief ze zijn in het vervangen van anderen'),
                 ),
-                new ButtonTheme.bar( // make buttons use the appropriate styles for cards
+                new ButtonTheme.bar(
                   child: new ButtonBar(
                     children: <Widget>[
                       new FlatButton(
@@ -314,7 +312,7 @@ class MedewerkersAddState extends State<MedewerkersAdd> {
                   decoration: new InputDecoration(
                     labelText: 'Wachtwoord'
                   ),
-                  obscureText: true,  // replace input with ****
+                  obscureText: true,
                   keyboardType: TextInputType.text,
                   onSaved: (val)=> _fullname = val,
                 ),
@@ -617,7 +615,7 @@ class MededelingDeleteState extends State<MededelingDelete> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
 
-                // iets waarmee je een mededeling kan selecteren en verwijderen
+                //TODO: iets waarmee je een mededeling kan selecteren en verwijderen
 
                 new Padding(
                   padding: const EdgeInsets.only(
