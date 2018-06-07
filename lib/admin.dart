@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'menu.dart';
+import 'functions.dart';
+import 'search_list.dart';
 
 String _action;
 
@@ -45,7 +47,6 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                           Navigator.push(
                             context,
                             new MaterialPageRoute(builder: (context) {
-                              _action = "toevoegen";
                               return new MedewerkersAdd();
                             }
                           ));
@@ -72,7 +73,7 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                             context,
                             new MaterialPageRoute(builder: (context) {
                               _action = "verwijderen";
-                              return new MedewerkersDelete();
+                              return new MedewerkersSearch();
                             }
                           ));
                         },
@@ -273,7 +274,7 @@ class MedewerkersAddState extends State<MedewerkersAdd> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Medewerker $_action"),
+        title: new Text("Medewerker toevoegen", style: new TextStyle(color: Colors.white),),
       ),
       body: new ListView(
         children: <Widget>[
@@ -420,8 +421,54 @@ class MedewerkersSearchState extends State<MedewerkersSearch> {
 
   Widget build(BuildContext context) {
     return new Scaffold(
+      body: new SearchList(),
+    );
+  }
+}
+
+class MedewerkersEdit extends StatefulWidget {
+  @override
+  State createState() => new MedewerkersEditState();
+}
+
+class MedewerkersEditState extends State<MedewerkersEdit> {
+  String _fullname;
+  String _wachtwoord;
+  String _afdeling;
+  String _functie;
+
+  List<String> _afdelingen = new List<String>();
+  List<String> _functies = new List<String>();
+    
+  @override
+  void initState() {
+    _afdelingen.addAll(["KW", "AGF", "Vers", "Kassa", "E-commerce", "Opleiding", "Overig"]);
+    _afdeling = _afdelingen.elementAt(0);
+
+    _functies.addAll(["KW manager", "Vulploegleider", "Magazijnmedewerker", "Vakkenvuller", "Overig"]);
+    _functie = _functies.elementAt(0);
+  }
+  
+  void _onChangedAfd(String afdeling) {
+    setState(() {
+      _afdeling = afdeling;
+    });
+  }
+
+  void _onChangedFun(String functie) {
+    setState(() {
+      _functie = functie;
+    });
+  }
+
+  void _submit() {
+    
+  }
+
+  Widget build(BuildContext context) {
+    return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Medewerker zoeken"),
+        title: new Text("Medewerker wijzigen", style: new TextStyle(color: Colors.white),),
       ),
       body: new ListView(
         children: <Widget>[
@@ -432,13 +479,101 @@ class MedewerkersSearchState extends State<MedewerkersSearch> {
             child: new Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                
                 new TextFormField(
                   decoration: new InputDecoration(
-                    labelText: 'Zoek op naam'
+                    labelText: 'Voornaam'
                   ),
                   keyboardType: TextInputType.text,
-                  onSaved: (val)=> _search = val,
+                  onSaved: (val)=> _fullname = val,
+                ),
+
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Achternaam'
+                  ),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _fullname = val,
+                ),
+
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Gebruikersnaam'
+                  ),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _fullname = val,
+                ),
+
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Wachtwoord'
+                  ),
+                  obscureText: true,
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _fullname = val,
+                ),
+
+                new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Text(
+                      'Afdeling: ',
+                      style: new TextStyle(fontSize: 17.0),
+                    ),
+                    new DropdownButton(
+                      value: _afdeling,
+                      items: _afdelingen.map((String value){
+                        return new DropdownMenuItem(
+                          value: value,
+                          child: new Row(
+                            children: <Widget>[          
+                              new Text('$value')
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String afdeling) {_onChangedAfd(afdeling);},
+                    ),
+                  ],
+                ),
+
+                new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Text(
+                      'Functie: ',
+                      style: new TextStyle(fontSize: 17.0),
+                    ),
+                    new DropdownButton(
+                      value: _functie,
+                      items: _functies.map((String value){
+                        return new DropdownMenuItem(
+                          value: value,
+                          child: new Row(
+                            children: <Widget>[          
+                              new Text('$value')
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String functie) {_onChangedFun(functie);},
+                    ),
+                  ],
+                ),
+
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Mobiel nummer'
+                  ),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _fullname = val,
+                ),
+
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: 'Email adres'
+                  ),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val)=> _fullname = val,
                 ),
 
                 new Padding(
@@ -451,18 +586,11 @@ class MedewerkersSearchState extends State<MedewerkersSearch> {
                   color: Colors.red,
                   textColor: Colors.white,
                   child: new Text(
-                    "Zoeken"
+                    "Opslaan"
                   ),
-                  onPressed: () { 
-                    Navigator.push(
-                      context,
-                      new MaterialPageRoute(builder: (context) {
-                        return new MedewerkersAdd();
-                      }),
-                    );
-                  } 
+                  onPressed: _submit,
+                  splashColor: Colors.purple, 
                 )
-
               ],
             ),
           ),
@@ -487,49 +615,53 @@ class MedewerkersDeleteState extends State<MedewerkersDelete> {
 
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Medewerkers verwijderen"),
-      ),
-      body: new ListView(
-        children: <Widget>[
-          new Padding(
-            padding: const EdgeInsets.fromLTRB(
-              25.0, 10.0, 25.0, 0.0
-            ),
-            child: new Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                
-                new TextFormField(
-                  decoration: new InputDecoration(
-                    labelText: 'Zoek op naam'
-                  ),
-                  keyboardType: TextInputType.text,
-                  onSaved: (val)=> _search = val,
-                ),
-
-                new Padding(
-                  padding: const EdgeInsets.only(
-                    top: 40.0,
-                  ),
-                ),
-
-                new RaisedButton(
-                  color: Colors.red,
-                  textColor: Colors.white,
-                  child: new Text(
-                    "Zoeken"
-                  ),
-                  onPressed: _submit,
-                  splashColor: Colors.purple, 
-                )
-
-              ],
-            ),
-          ),
-        ]
-      ),
+      body: new SearchList(),
     );
+    
+    // return new Scaffold(
+    //   appBar: new AppBar(
+    //     title: new Text("Medewerkers verwijderen"),
+    //   ),
+    //   body: new ListView(
+    //     children: <Widget>[
+    //       new Padding(
+    //         padding: const EdgeInsets.fromLTRB(
+    //           25.0, 10.0, 25.0, 0.0
+    //         ),
+    //         child: new Column(
+    //           mainAxisAlignment: MainAxisAlignment.center,
+    //           children: <Widget>[
+                
+    //             new TextFormField(
+    //               decoration: new InputDecoration(
+    //                 labelText: 'Zoek op naam'
+    //               ),
+    //               keyboardType: TextInputType.text,
+    //               onSaved: (val)=> _search = val,
+    //             ),
+
+    //             new Padding(
+    //               padding: const EdgeInsets.only(
+    //                 top: 40.0,
+    //               ),
+    //             ),
+
+    //             new RaisedButton(
+    //               color: Colors.red,
+    //               textColor: Colors.white,
+    //               child: new Text(
+    //                 "Zoeken"
+    //               ),
+    //               onPressed: _submit,
+    //               splashColor: Colors.purple, 
+    //             )
+
+    //           ],
+    //         ),
+    //       ),
+    //     ]
+    //   ),
+    // );
   }
 }
 
@@ -547,7 +679,7 @@ class MededelingAddState extends State<MededelingAdd> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Mededeling aanmaken"),
+        title: new Text("Mededeling aanmaken", style: new TextStyle(color: Colors.white),),
       ),
       body: new ListView(
         children: <Widget>[
@@ -603,7 +735,7 @@ class MededelingDeleteState extends State<MededelingDelete> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Mededeling verwijderen"),
+        title: new Text("Mededeling verwijderen", style: new TextStyle(color: Colors.white),),
       ),
       body: new ListView(
         children: <Widget>[
@@ -615,23 +747,9 @@ class MededelingDeleteState extends State<MededelingDelete> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
 
-                //TODO: iets waarmee je een mededeling kan selecteren en verwijderen
+                createNotification("26-04-18 12:00", "Zoals jullie zien is het nieuwe rooster toegevoegd. Let er op dat vrijdag 27 april het rooster er iets anders uit ziet vanwege koningsdag.", "Joost"),
+                createNotification("26-04-18 12:00", "Zoals jullie zien is het nieuwe rooster toegevoegd. Let er op dat vrijdag 27 april het rooster er iets anders uit ziet vanwege koningsdag.", "Joost"),
 
-                new Padding(
-                  padding: const EdgeInsets.only(
-                    top: 40.0,
-                  ),
-                ),
-
-                new RaisedButton(
-                  color: Colors.red,
-                  textColor: Colors.white,
-                  child: new Text(
-                    "Verwijderen"
-                  ),
-                  onPressed: _submit,
-                  splashColor: Colors.purple, 
-                )
 
               ],
             ),
@@ -656,7 +774,7 @@ class VervangingAddState extends State<VervangingAdd> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Vervanging aanmaken"),
+        title: new Text("Vervanging aanmaken", style: new TextStyle(color: Colors.white),),
       ),
       body: new ListView(
         children: <Widget>[
@@ -667,27 +785,6 @@ class VervangingAddState extends State<VervangingAdd> {
             child: new Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-
-                new TextField(
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 5,
-                ),
-
-                new Padding(
-                  padding: const EdgeInsets.only(
-                    top: 40.0,
-                  ),
-                ),
-
-                new RaisedButton(
-                  color: Colors.red,
-                  textColor: Colors.white,
-                  child: new Text(
-                    "Aanmaken"
-                  ),
-                  onPressed: _submit,
-                  splashColor: Colors.purple, 
-                )
 
               ],
             ),
@@ -712,7 +809,7 @@ class VervangingEditState extends State<VervangingEdit> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Vervanging wijzigen"),
+        title: new Text("Vervanging wijzigen", style: new TextStyle(color: Colors.white),),
       ),
       body: new ListView(
         children: <Widget>[
@@ -749,7 +846,7 @@ class VervangingDeleteState extends State<VervangingDelete> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Vervanging verwijderen"),
+        title: new Text("Vervanging verwijderen", style: new TextStyle(color: Colors.white),),
       ),
       body: new ListView(
         children: <Widget>[
@@ -786,7 +883,7 @@ class InvalShowState extends State<InvalShow> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Inval lijst bekijken"),
+        title: new Text("Inval lijst bekijken", style: new TextStyle(color: Colors.white),),
       ),
       body: new ListView(
         children: <Widget>[
@@ -823,7 +920,7 @@ class InvalEditState extends State<InvalEdit> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Inval lijst wijzigen"),
+        title: new Text("Inval lijst wijzigen", style: new TextStyle(color: Colors.white),),
       ),
       body: new ListView(
         children: <Widget>[
@@ -835,27 +932,8 @@ class InvalEditState extends State<InvalEdit> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
 
-                new TextField(
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 5,
-                ),
-
-                new Padding(
-                  padding: const EdgeInsets.only(
-                    top: 40.0,
-                  ),
-                ),
-
-                new RaisedButton(
-                  color: Colors.red,
-                  textColor: Colors.white,
-                  child: new Text(
-                    "Aanmaken"
-                  ),
-                  onPressed: _submit,
-                  splashColor: Colors.purple, 
-                )
-
+                
+                
               ],
             ),
           ),
