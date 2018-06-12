@@ -61,18 +61,18 @@ class LoginPageState extends State<LoginPage>
                       children: <Widget>[
                         new TextFormField(
                           decoration:
-                              new InputDecoration(labelText: "Username"),
+                              new InputDecoration(labelText: "Gebruikersnaam"),
                           keyboardType: TextInputType.text,
                           //validator: (val)=> !val.contains("@") ? "Invalid Email" : null,
-                          validator: (val) => val.length < 6 ? "Username is too short" : null,
+                          validator: (val) => val.length < 6 ? "Ongeldige gebruikersnaam" : null,
                           onSaved: (val) => _username = val,
                         ),
                         new TextFormField(
                           decoration:
-                              new InputDecoration(labelText: "Password"),
+                              new InputDecoration(labelText: "Wachtwoord"),
                           keyboardType: TextInputType.text,
                           obscureText: true,
-                          validator: (val) => val.length < 6 ? "Password is too short" : null,
+                          validator: (val) => val.length < 6 ? "Wachtwoord is te kort!" : null,
                           onSaved: (val) => _password = val,
                         ),
                         new Padding(
@@ -83,7 +83,7 @@ class LoginPageState extends State<LoginPage>
                         new RaisedButton(
                           color: Colors.red,
                           textColor: Colors.white,
-                          child: new Text("Login"),
+                          child: new Text("Inloggen"),
                           onPressed: _submit,
                           splashColor: Colors.purple,
                         )

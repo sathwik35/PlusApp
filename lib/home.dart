@@ -43,7 +43,7 @@ class HomePageState extends State<HomePage>
                   padding: const EdgeInsets.only(top: 5.0),
                   child: new Column(
                     children: <Widget>[
-                      createRequest("1", "Kees", "Woensdag 25-04-18", "18:00", "21:00"),
+                      createRequest("1", "Rik", "Woensdag 25-04-18", "18:00", "21:00"),
                       createRequest("2", "Harry", "Donderdag 26-04-18", "9:00", "18:00"),
 
                       createNotification("26-04-18 12:00", "Zoals jullie zien is het nieuwe rooster toegevoegd. Let er op dat vrijdag 27 april het rooster er iets anders uit ziet vanwege koningsdag.", "Joost"),
