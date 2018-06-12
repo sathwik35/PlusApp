@@ -21,13 +21,7 @@ class PersoneelSoloPageState extends State<PersoneelSoloPage> with SingleTickerP
       body: new Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          new Image(
-            image: new AssetImage("assets/background.png"),
-            fit: BoxFit.cover,
-            // color: Colors.black87,
-            // colorBlendMode: BlendMode.darken,
-          ),
-          new Column(
+           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Theme(
