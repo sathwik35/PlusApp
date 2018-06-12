@@ -20,13 +20,6 @@ class RoosterPageState extends State<RoosterPage>
       backgroundColor: Colors.white,
       body: new ListView(
         children: <Widget>[
-<<<<<<< HEAD
-=======
-          new Image(
-            image: new AssetImage("assets/background.png"),
-            fit: BoxFit.cover,
-          ),
->>>>>>> 6808a8260885354c1f49efebe0960714030aede1
           new Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[

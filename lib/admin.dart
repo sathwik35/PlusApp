@@ -25,31 +25,6 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
       backgroundColor: Colors.white,
       body: new ListView(
         children: <Widget>[
-<<<<<<< HEAD
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Theme(
-                data: new ThemeData(
-                  brightness: Brightness.dark,
-                  primarySwatch: Colors.teal,
-                  inputDecorationTheme: new InputDecorationTheme(
-                    labelStyle: new TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0
-                    )
-                  )
-                ),
-                child: new Container(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-=======
-          new Image(
-            image: new AssetImage("assets/background.png"),
-            fit: BoxFit.cover,
-          ),
           new Card(
             child: new Column(
               mainAxisSize: MainAxisSize.min,
@@ -61,7 +36,6 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
                 ),
                 new ButtonTheme.bar(
                   child: new ButtonBar(
->>>>>>> 6808a8260885354c1f49efebe0960714030aede1
                     children: <Widget>[
                       new FlatButton(
                         child: const Text('TOEVOEGEN'),
