@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'functions.dart';
-import 'menu.dart';
 
 class AccountPage extends StatefulWidget {
   @override
