@@ -240,17 +240,7 @@ Widget userInfo(_personID) {
   String _personFunction = "";
   String _personPhone = "";
   String _personEmail = "";
-  String _personImage = "";
-
-  if (_personID == 1) {
-    _personFName = "Henk";
-    _personLName = "Pieters";
-    _personLocation = "Dordrecht";
-    _personFunction = "Vakkenvuller";
-    _personPhone = "0612345678";
-    _personEmail = "h.pieters@plus.nl";
-    _personImage = "H";
-  }
+  String _personImage = _personFName[0];
 
   return new Container(
     padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 5.0),
@@ -316,7 +306,6 @@ Widget userInfo(_personID) {
   );
 }
 
-
 Widget createAccount(_personID) {
   String _personFName = "";
   String _personLName = "";
@@ -324,17 +313,7 @@ Widget createAccount(_personID) {
   String _personFunction = "";
   String _personPhone = "";
   String _personEmail = "";
-  String _personImage = "";
-
-  if (_personID == 1) {
-    _personFName = "Henk";
-    _personLName = "Pieters";
-    _personLocation = "Dordrecht";
-    _personFunction = "Vakkenvuller";
-    _personPhone = "0612345678";
-    _personEmail = "h.pieters@plus.nl";
-    _personImage = "H";
-  }
+  String _personImage = _personFName[0];
 
   return new Container(
     padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 5.0),

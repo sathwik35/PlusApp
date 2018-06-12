@@ -12,7 +12,7 @@ class MenuBar extends StatefulWidget {
 }
 
 class _MenuBarState extends State<MenuBar> {
-  String _uname = "Tim Oldenburger";
+  String _uname = "Stefan ten Oever";
   String _functie = "Vulploegleider";
 
   @override
@@ -25,7 +25,7 @@ class _MenuBarState extends State<MenuBar> {
           accountEmail: new Text(_functie),
           currentAccountPicture: new CircleAvatar(
             backgroundColor: Colors.white,
-            child: new Text("T"),
+            child: new Text(_uname[0]),
           ),
           onDetailsPressed: () {
             Navigator.push(context,

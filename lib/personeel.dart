@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'functions.dart';
 import 'menu.dart';
+
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:firebase_core/firebase_core.dart';
+// final FirebaseApp app = FirebaseApp(
+//   name: '',
+//   options: FirebaseOptions(
+//     googleAppID: '',
+//     apiKey: '',
+//     databaseURL: '',
+//   )
+// );
 
 class PersoneelPage extends StatefulWidget {
   @override
@@ -37,16 +48,16 @@ class PersoneelPageState extends State<PersoneelPage>
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      createPerson("1", "Henk Pieters", "0612345678", "H"),
-                      createPerson("2", "Barry Badpak", "0612345678", "B"),
-                      createPerson("3", "Kennie koken", "0612345678", "K"),
-                      createPerson("4", "Henry heggeschaar", "0612345678", "H"),
-                      createPerson("5", "Cornelis Klaase", "0612345678", "C"),
-                      createPerson("6", "Jan jansen", "0612345678", "J"),
-                      createPerson("7", "Jos Schoot", "0612345678", "J"),
-                      createPerson("8", "Ton Zijnen", "0612345678", "T"),
-                      createPerson("9", "Loesje Zijnen", "0612345678", "L"),
-                      createPerson("10", "Roosmarijn Reimers", "0612345678", "R"),
+                      createPerson("1", "Henk Pieters", "0612345678"),
+                      createPerson("2", "Barry Badpak", "0612345678"),
+                      createPerson("3", "Kennie koken", "0612345678"),
+                      createPerson("4", "Henry heggeschaar", "0612345678"),
+                      createPerson("5", "Cornelis Klaase", "0612345678"),
+                      createPerson("6", "Jan jansen", "0612345678"),
+                      createPerson("7", "Jos Schoot", "0612345678"),
+                      createPerson("8", "Ton Zijnen", "0612345678"),
+                      createPerson("9", "Loesje Zijnen", "0612345678"),
+                      createPerson("10", "Roosmarijn Reimers", "0612345678"),
                     ],
                   ),
                 ),
@@ -58,7 +69,7 @@ class PersoneelPageState extends State<PersoneelPage>
     );
   }
 
-  Widget createPerson(_personID, _personName, _personPhone, _personImage) {
+  Widget createPerson(_personID, _personName, _personPhone) {
     return new Container(
         padding: const EdgeInsets.only(
             left: 20.0, right: 20.0, top: 5.0, bottom: 5.0),
@@ -69,7 +80,7 @@ class PersoneelPageState extends State<PersoneelPage>
               new CircleAvatar(
                 backgroundColor: new Color(0xFF534BA3),
                 foregroundColor: Colors.white,
-                child: new Text("$_personImage"),
+                child: new Text(_personName[0]),
               ),
               new Flexible(
                 child: new Column(
