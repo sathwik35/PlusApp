@@ -20,10 +20,6 @@ class PersoneelSoloPageState extends State<PersoneelSoloPage>
       body: new Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          new Image(
-            image: new AssetImage("assets/background.png"),
-            fit: BoxFit.cover,
-          ),
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'menu.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'functions.dart';
+import 'menu.dart';
 
 class PersoneelPage extends StatefulWidget {
   @override
@@ -20,10 +21,6 @@ class PersoneelPageState extends State<PersoneelPage>
       backgroundColor: Colors.white,
       body: new ListView(
         children: <Widget>[
-          new Image(
-            image: new AssetImage("assets/background.png"),
-            fit: BoxFit.cover,
-          ),
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

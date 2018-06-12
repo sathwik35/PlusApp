@@ -26,10 +26,6 @@ class AdminPageState extends State<AdminPage> with SingleTickerProviderStateMixi
       backgroundColor: Colors.white,
       body: new ListView(
         children: <Widget>[
-          new Image(
-            image: new AssetImage("assets/background.png"),
-            fit: BoxFit.cover,
-          ),
           new Card(
             child: new Column(
               mainAxisSize: MainAxisSize.min,
