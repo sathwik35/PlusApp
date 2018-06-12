@@ -7,7 +7,8 @@ class HomePage extends StatefulWidget {
   State createState() => new HomePageState();
 }
 
-class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
+class HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
@@ -19,42 +20,38 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
       drawer: new MenuBar(),
       appBar: new AppBar(
         title: new Image(
-          image: new AssetImage("assets/menu.png"),
-          fit: BoxFit.cover
-        ),
+            image: new AssetImage("assets/menu.png"), fit: BoxFit.cover),
       ),
       backgroundColor: Colors.white,
       body: new ListView(
         children: <Widget>[
+<<<<<<< HEAD
+=======
+          new Image(
+            image: new AssetImage("assets/background.png"),
+            fit: BoxFit.cover,
+          ),
+>>>>>>> 6808a8260885354c1f49efebe0960714030aede1
           new Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               new Theme(
                 data: new ThemeData(
-                  brightness: Brightness.dark,
-                  primarySwatch: Colors.teal,
-                  inputDecorationTheme: new InputDecorationTheme(
-                    labelStyle: new TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0
-                    )
-                  )
-                ),
+                    brightness: Brightness.dark,
+                    primarySwatch: Colors.teal,
+                    inputDecorationTheme: new InputDecorationTheme(
+                        labelStyle: new TextStyle(
+                            color: Colors.white, fontSize: 20.0))),
                 child: new Container(
                   padding: const EdgeInsets.only(top: 5.0),
                   child: new Column(
                     children: <Widget>[
-
-                      // Request
                       createRequest("1", "Kees", "Woensdag 25-04-18", "18:00", "21:00"),
-                      //createRequest("2", "Harry", "Donderdag 26-04-18", "9:00", "18:00"),
-                      
-                      // Notification
+                      createRequest("2", "Harry", "Donderdag 26-04-18", "9:00", "18:00"),
+
                       createNotification("26-04-18 12:00", "Zoals jullie zien is het nieuwe rooster toegevoegd. Let er op dat vrijdag 27 april het rooster er iets anders uit ziet vanwege koningsdag.", "Joost"),
 
-                      // Update
                       createUpdate("26-04-18 12:00", "Er is een nieuw rooster beschikbaar. Klik op de rooster tab in het menu om het rooster te kunnen bekijken."),
-
                     ],
                   ),
                 ),

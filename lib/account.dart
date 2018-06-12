@@ -7,41 +7,40 @@ class AccountPage extends StatefulWidget {
   State createState() => new AccountPageState();
 }
 
-class AccountPageState extends State<AccountPage> with SingleTickerProviderStateMixin{
+class AccountPageState extends State<AccountPage>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      drawer: new MenuBar(),
       appBar: new AppBar(
         title: new Image(
-          image: new AssetImage("assets/menu.png"),
-          fit: BoxFit.cover
-        ),
+            image: new AssetImage("assets/menu.png"), fit: BoxFit.cover),
       ),
       backgroundColor: Colors.white,
       body: new ListView(
         children: <Widget>[
+<<<<<<< HEAD
+=======
+          new Image(
+            image: new AssetImage("assets/background.png"),
+            fit: BoxFit.cover,
+          ),
+>>>>>>> 6808a8260885354c1f49efebe0960714030aede1
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Theme(
                 data: new ThemeData(
-                  brightness: Brightness.dark,
-                  primarySwatch: Colors.teal,
-                  inputDecorationTheme: new InputDecorationTheme(
-                    labelStyle: new TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0
-                    )
-                  )
-                ),
+                    brightness: Brightness.dark,
+                    primarySwatch: Colors.teal,
+                    inputDecorationTheme: new InputDecorationTheme(
+                        labelStyle: new TextStyle(
+                            color: Colors.white, fontSize: 20.0))),
                 child: new Container(
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-
-                      createAccount(1), // 1 = ID
-
+                      createAccount(1),
                     ],
                   ),
                 ),
