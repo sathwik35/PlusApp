@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'functions.dart';
 import 'menu.dart';
@@ -9,9 +12,20 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  @override
+  var _response;
+
   void initState() {
     super.initState();
+    _refresh();
+  }
+
+  void _refresh() {
+    setState(() {
+      _response = http.get(
+        'http://localhost:5984/plusapp/_design/view/_view/new-view'
+          '?limit=200&reduce=false'
+      );
+    });
   }
 
   @override

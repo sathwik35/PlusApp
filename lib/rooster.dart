@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'functions.dart';
 import 'menu.dart';
+import 'data.dart';
 
 class RoosterPage extends StatefulWidget {
   @override
@@ -18,40 +20,56 @@ class RoosterPageState extends State<RoosterPage>
             image: new AssetImage("assets/menu.png"), fit: BoxFit.cover),
       ),
       backgroundColor: Colors.white,
-      body: new ListView(
-        children: <Widget>[
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              new Theme(
-                data: new ThemeData(
-                    brightness: Brightness.dark,
-                    primarySwatch: Colors.teal,
-                    inputDecorationTheme: new InputDecorationTheme(
-                        labelStyle: new TextStyle(
-                            color: Colors.white, fontSize: 20.0))),
-                child: new Container(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: new Column(
-                    children: <Widget>[
-                      createSchedule("Ma", "16:00", "18:00", "7 mei 2018", "KW"),
-                      createSchedule("Wo", "18:00", "21:00", "9 mei 2018", "KW"),
-                      createSchedule("Vr", "15:30", "21:30", "11 mei 2018", "KW"),
-                      createSchedule("Ma", "16:00", "18:00", "14 mei 2018", "KW"),
-                      createSchedule("Wo", "18:00", "21:00", "16 mei 2018", "Opleiding"),
-                      createSchedule("Vr", "15:30", "21:30", "18 mei 2018", "KW"),
-                      createSchedule("Za", "07:00", "13:00", "19 mei 2018", "KW"),
-                      createSchedule("Za", "18:00", "20:00", "19 mei 2018", "Kassa"),
-                      createSchedule("Ma", "16:00", "18:00", "21 mei 2018", "KW"),
-                      createSchedule("Di", "17:00", "20:00", "22 mei 2018", "Kassa"),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
+      body: new StreamBuilder(
+        stream: Firestore.instance.collection('medewerkers').snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return const Text('Loading...');
+          return new ListView.builder(
+            itemCount: snapshot.data.documents.length,
+            padding: const EdgeInsets.only(top: 10.0),
+            itemExtent: 25.0,
+            itemBuilder: (context, index) {
+              DocumentSnapshot ds = snapshot.data.documents[index];
+              return new Text("${ds['firstname']} ${ds['lastname']}");
+            }
+          );
+        },
+      )
+      
+      
+      
+      
+      // new ListView(
+      //   children: <Widget>[
+      //     new Column(
+      //       mainAxisAlignment: MainAxisAlignment.start,
+      //       children: <Widget>[
+      //         new Theme(
+      //           data: new ThemeData(
+      //               brightness: Brightness.dark,
+      //               primarySwatch: Colors.teal,
+      //               inputDecorationTheme: new InputDecorationTheme(
+      //                   labelStyle: new TextStyle(
+      //                       color: Colors.white, fontSize: 20.0))),
+      //           child: new Container(
+      //             padding: const EdgeInsets.only(top: 10.0),
+      //             child: new Column(
+      //               children: <Widget>[
+      //                 createSchedule("Ma", "18 juni 2018", "Niels", "Rik", "16:00", "19:00", "KW"),
+      //                 createSchedule("Wo", "20 juni 2018", "Niels", "Rik", "16:00", "19:00", "KW"),
+      //                 createSchedule("Wo", "20 juni 2018", "Niels", "Rik", "16:00", "19:00", "KW"),
+      //                 createSchedule("Vr", "22 juni 2018", "Niels", "Rik", "16:00", "19:00", "KW"),
+      //                 createSchedule("Vr", "22 juni 2018", "Niels", "Rik", "16:00", "19:00", "KW"),
+      //                 createSchedule("Vr", "22 juni 2018", "Niels", "Rik", "16:00", "19:00", "KW"),
+      //                 createSchedule("Za", "23 juni 2018", "Niels", "Rik", "16:00", "19:00", "KW")
+      //               ],
+      //             ),
+      //           ),
+      //         ),
+      //       ],
+      //     )
+      //   ],
+      // ),
     );
   }
 }

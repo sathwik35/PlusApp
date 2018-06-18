@@ -245,7 +245,7 @@ class MedewerkersAddState extends State<MedewerkersAdd> {
     
   @override
   void initState() {
-    _afdelingen.addAll(["KW", "AGF", "Vers", "Kassa", "E-commerce", "Opleiding", "Overig"]);
+    _afdelingen.addAll(["KW"]); // , "AGF", "Vers", "Kassa", "E-commerce", "Opleiding", "Overig"
     _afdeling = _afdelingen.elementAt(0);
 
     _functies.addAll(["KW manager", "Vulploegleider", "Magazijnmedewerker", "Vakkenvuller", "Overig"]);

@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>675017135663-oha7dantd48tuqan6k8r4htn3prrr43h.apps.googleusercontent.com</string>
+	<string>838154833289-s939htvfhfkc6cr5sfjpdtn4e25oo1um.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.675017135663-oha7dantd48tuqan6k8r4htn3prrr43h</string>
+	<string>com.googleusercontent.apps.838154833289-s939htvfhfkc6cr5sfjpdtn4e25oo1um</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBG7C1TFi4cKb7vTBLRGQAbprkdGHP2JFU</string>
+	<string>AIzaSyAxeadQuzvKphO7pZ2djUrNqyUEbpa7GDM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>675017135663</string>
+	<string>838154833289</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>plus.rooster.medewerkers</string>
 	<key>PROJECT_ID</key>
-	<string>plusmedewerkers</string>
+	<string>plusappmedewerkers</string>
 	<key>STORAGE_BUCKET</key>
-	<string>plusmedewerkers.appspot.com</string>
+	<string>plusappmedewerkers.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:675017135663:ios:26a1b7129d3ff5ad</string>
+	<string>1:838154833289:ios:26a1b7129d3ff5ad</string>
 	<key>DATABASE_URL</key>
-	<string>https://plusmedewerkers.firebaseio.com</string>
+	<string>https://plusappmedewerkers.firebaseio.com</string>
 </dict>
 </plist>

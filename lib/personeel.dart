@@ -2,18 +2,6 @@ import 'package:flutter/material.dart';
 import 'functions.dart';
 import 'menu.dart';
 
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
-import 'package:firebase_core/firebase_core.dart';
-// final FirebaseApp app = FirebaseApp(
-//   name: '',
-//   options: FirebaseOptions(
-//     googleAppID: '',
-//     apiKey: '',
-//     databaseURL: '',
-//   )
-// );
-
 class PersoneelPage extends StatefulWidget {
   @override
   State createState() => new PersoneelPageState();

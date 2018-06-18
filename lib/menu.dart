@@ -40,9 +40,9 @@ class _MenuBarState extends State<MenuBar> {
             Navigator.push(context,
                 new MaterialPageRoute(builder: (context) => new HomePage()));
           },
-        ),
+        ),        
         new ListTile(
-          title: new Text('Rooster'),
+          title: new Text('Inval rooster'),
           trailing: new Icon(Icons.date_range),
           onTap: () {
             () => Navigator.of(context).pop();

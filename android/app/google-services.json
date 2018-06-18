@@ -1,31 +1,31 @@
 {
   "project_info": {
-    "project_number": "675017135663",
-    "firebase_url": "https://plusmedewerkers.firebaseio.com",
-    "project_id": "plusmedewerkers",
-    "storage_bucket": "plusmedewerkers.appspot.com"
+    "project_number": "838154833289",
+    "firebase_url": "https://plusappmedewerkers.firebaseio.com",
+    "project_id": "plusappmedewerkers",
+    "storage_bucket": "plusappmedewerkers.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:675017135663:android:26a1b7129d3ff5ad",
+        "mobilesdk_app_id": "1:838154833289:android:26a1b7129d3ff5ad",
         "android_client_info": {
           "package_name": "plus.rooster.medewerkers"
         }
       },
       "oauth_client": [
         {
-          "client_id": "675017135663-ich4bct9o5upss6sj1jdg7am3jf94aej.apps.googleusercontent.com",
+          "client_id": "838154833289-an2esf6br216bngehvoduma31jhggl7u.apps.googleusercontent.com",
           "client_type": 3
         },
         {
-          "client_id": "675017135663-ich4bct9o5upss6sj1jdg7am3jf94aej.apps.googleusercontent.com",
+          "client_id": "838154833289-an2esf6br216bngehvoduma31jhggl7u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDRBq8gBai29kQ6rqXGYU8WR7_KcFx_mFU"
+          "current_key": "AIzaSyAXH28p1wy1xsAqQmbW63sIiQ3qxN0S9CY"
         }
       ],
       "services": {
