@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'functions.dart';
 import 'menu.dart';
-import 'data.dart';
 
 class RoosterPage extends StatefulWidget {
   @override
@@ -21,7 +20,7 @@ class RoosterPageState extends State<RoosterPage>
       ),
       backgroundColor: Colors.white,
       body: new StreamBuilder(
-        stream: Firestore.instance.collection('medewerkers').snapshots(),
+        stream: Firestore.instance.collection('vervanging').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) return const Text('Loading...');
           return new ListView.builder(
@@ -30,7 +29,14 @@ class RoosterPageState extends State<RoosterPage>
             itemExtent: 25.0,
             itemBuilder: (context, index) {
               DocumentSnapshot ds = snapshot.data.documents[index];
-              return new Text("${ds['firstname']} ${ds['lastname']}");
+              createSchedule(
+                "${ds['day']}", 
+                "${ds['date']}", 
+                "${ds['personOut']}", 
+                "${ds['personIn']}", 
+                "${ds['timeS']}", 
+                "${ds['timeE']}", 
+                "${ds['department']}");
             }
           );
         },

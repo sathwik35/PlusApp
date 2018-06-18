@@ -12,21 +12,6 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  var _response;
-
-  void initState() {
-    super.initState();
-    _refresh();
-  }
-
-  void _refresh() {
-    setState(() {
-      _response = http.get(
-        'http://localhost:5984/plusapp/_design/view/_view/new-view'
-          '?limit=200&reduce=false'
-      );
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
