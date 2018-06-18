@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'functions.dart';
 import 'menu.dart';
 
@@ -18,42 +19,21 @@ class PersoneelPageState extends State<PersoneelPage>
             image: new AssetImage("assets/menu.png"), fit: BoxFit.cover),
       ),
       backgroundColor: Colors.white,
-      body: new ListView(
-        children: <Widget>[
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Theme(
-                data: new ThemeData(
-                    brightness: Brightness.dark,
-                    primarySwatch: Colors.teal,
-                    inputDecorationTheme: new InputDecorationTheme(
-                        labelStyle: new TextStyle(
-                            color: Colors.white, fontSize: 20.0))),
-                child: new Container(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      createPerson("1", "Henk Pieters", "0612345678"),
-                      createPerson("2", "Barry Badpak", "0612345678"),
-                      createPerson("3", "Kennie koken", "0612345678"),
-                      createPerson("4", "Henry heggeschaar", "0612345678"),
-                      createPerson("5", "Cornelis Klaase", "0612345678"),
-                      createPerson("6", "Jan jansen", "0612345678"),
-                      createPerson("7", "Jos Schoot", "0612345678"),
-                      createPerson("8", "Ton Zijnen", "0612345678"),
-                      createPerson("9", "Loesje Zijnen", "0612345678"),
-                      createPerson("10", "Roosmarijn Reimers", "0612345678"),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          )
-        ],
-      ),
+      body: new StreamBuilder(
+        stream: Firestore.instance.collection('medewerkers').snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return const Text('Loading...');
+          return new ListView.builder(
+            itemCount: snapshot.data.documents.length,
+            padding: const EdgeInsets.only(top: 10.0),
+            itemExtent: 59.0,
+            itemBuilder: (context, index) {
+              DocumentSnapshot ds = snapshot.data.documents[index];
+              return createPerson("${ds['username']}", "${ds['firstname']} ${ds['lastname']}", "${ds['phone']}");
+            }
+          );
+        },
+      )
     );
   }
 
@@ -109,6 +89,7 @@ class PersoneelPageState extends State<PersoneelPage>
 }
 
 class UserInfo extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -138,7 +119,7 @@ class UserInfo extends StatelessWidget {
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      userInfo(1), //TODO: Set user ID to variable
+                      userInfo(1),
                     ],
                   ),
                 ),

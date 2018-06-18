@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -39,6 +40,21 @@ class LoginPageState extends State<LoginPage>
       backgroundColor: new Color(0xFF81BD1D),
       body: new ListView(
         children: <Widget>[
+          // new StreamBuilder(
+          //   stream: Firestore.instance.collection('medewerkers').snapshots(),
+          //   builder: (context, snapshot) {
+          //     if (!snapshot.hasData) return const Text('Loading...');
+          //     return new ListView.builder(
+          //       itemCount: snapshot.data.documents.length,
+          //       padding: const EdgeInsets.only(top: 10.0),
+          //       itemExtent: 25.0,
+          //       itemBuilder: (context, index) {
+          //         DocumentSnapshot ds = snapshot.data.documents[index];
+          //         _dbTest = "${ds['firstname']} ${ds['lastname']}";
+          //       }
+          //     );
+          //   },
+          // ),
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -62,7 +78,7 @@ class LoginPageState extends State<LoginPage>
                       children: <Widget>[
                         new TextFormField(
                           decoration:
-                              new InputDecoration(labelText: "Gebruikersnaam"),
+                              new InputDecoration(labelText: "Gebruikersnaam"), // $_dbTest
                           keyboardType: TextInputType.text,
                           //validator: (val)=> !val.contains("@") ? "Invalid Email" : null,
                           validator: (val) => val.length < 6 ? "Ongeldige gebruikersnaam" : null,
