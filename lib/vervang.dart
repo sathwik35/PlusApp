@@ -319,10 +319,6 @@ class VervangPageState extends State<VervangPage> with SingleTickerProviderState
       backgroundColor: Colors.white,
       body: new ListView(
         children: <Widget>[
-          new Image(
-            image: new AssetImage("assets/background.png"),
-            fit: BoxFit.cover,
-          ),
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

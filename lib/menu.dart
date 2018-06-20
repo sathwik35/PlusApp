@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'rooster.dart';
 import 'personeel.dart';
-import 'account.dart';
 import 'admin.dart';
 import 'vervang.dart';
 import 'login.dart';
@@ -29,10 +28,6 @@ class _MenuBarState extends State<MenuBar> {
               backgroundColor: Colors.white,
               child: new Text(_name[0],textScaleFactor: 2.5,style:new TextStyle(color: Colors.black),),
             ),
-            onDetailsPressed: () {
-              // Navigator.push(context,
-              //     new MaterialPageRoute(builder: (context) => new AccountPage()));
-            },
           ),
           new ListTile(
             title: new Text('Startpagina'),

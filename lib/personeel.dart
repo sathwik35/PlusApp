@@ -45,9 +45,9 @@ class PersoneelPageState extends State<PersoneelPage>
 
   Widget createPerson(_personID, _personName, _personPhone, _personDepartment, _personFunction, _personEmail) {
     return new Container(
-        padding: const EdgeInsets.only(
-            left: 20.0, right: 20.0, top: 5.0, bottom: 5.0),
-        child: new Column(children: <Widget>[
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0, bottom: 5.0),
+        child: new Column(
+          children: <Widget>[
           new Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

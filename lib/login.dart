@@ -13,7 +13,6 @@ class LoginPageState extends State<LoginPage>
   final formKey = new GlobalKey<FormState>();
   String _username;
   String _password;
-  String _dbTest;
   
   void _submit() {
     final form = formKey.currentState;

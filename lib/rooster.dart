@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'functions.dart';
 import 'menu.dart';
 
 class RoosterPage extends StatefulWidget {
@@ -26,7 +25,7 @@ class RoosterPageState extends State<RoosterPage>
           return new ListView.builder(
             itemCount: snapshot.data.documents.length,
             padding: const EdgeInsets.only(top: 10.0),
-            itemExtent: 25.0,
+            itemExtent: 59.0,
             itemBuilder: (context, index) {
               DocumentSnapshot ds = snapshot.data.documents[index];
               createSchedule(
@@ -36,15 +35,63 @@ class RoosterPageState extends State<RoosterPage>
                 "${ds['personIn']}", 
                 "${ds['timeS']}", 
                 "${ds['timeE']}", 
-                "${ds['department']}");
+                "${ds['department']}"
+              );
             }
           );
         },
       )
-      
-      
-      
-      
+    );
+  }
+
+  Widget createSchedule(_scheduleDay, _scheduleDate, _schedulePersonOut, _schedulePersonIn, _scheduleTimeS, _scheduleTimeE, _scheduleFunction) {
+    return new Container(
+      padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0, bottom: 5.0),
+      child: new Column(
+        children: <Widget>[
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              new Flexible(
+                child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    new Text("$_scheduleDay"),
+                    new Text("$_scheduleDate")
+                  ],
+                ),
+              ),
+              new Flexible(
+                child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    new Text("$_schedulePersonOut werkt niet"),
+                    new Text("$_schedulePersonIn valt in")
+                  ],
+                ),
+              ),
+              new Flexible(
+                child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    new Text("$_scheduleTimeS - $_scheduleTimeE"),
+                    new Text("$_scheduleFunction")
+                  ],
+                ),
+              ),
+            ],
+          ),
+          new Divider(
+            color: Colors.black,
+            height: 1.0,
+          ),
+        ]
+      )
+    );
+  }
+
+  
       // new ListView(
       //   children: <Widget>[
       //     new Column(
@@ -76,6 +123,5 @@ class RoosterPageState extends State<RoosterPage>
       //     )
       //   ],
       // ),
-    );
-  }
+  
 }
