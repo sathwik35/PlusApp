@@ -14,7 +14,7 @@ class MenuBar extends StatefulWidget {
 class _MenuBarState extends State<MenuBar> {
 
   String _name = "Tim Oldenburger";
-  String _function = "Vulploegleider";
+  String _function = "Admin";
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,7 @@ class _MenuBarState extends State<MenuBar> {
           new ListTile(
             title: new Text('Administrator'),
             trailing: new Icon(Icons.lock),
-            enabled: _function == "Vulploegleider" || _function == "KW manager",
+            enabled: _function == "Vulploegleider" || _function == "KW manager" || _function == "Admin",
             onTap: () {
               () => Navigator.of(context).pop();
               Navigator.push(context,
