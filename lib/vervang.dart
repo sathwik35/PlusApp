@@ -342,7 +342,7 @@ class VervangPageState extends State<VervangPage> with SingleTickerProviderState
                   leading: new Icon(Icons.alarm, color: Colors.white),
                   title: new Text('Eindtijd: $_hour2:$_minute2'),
                   onTap: (){
-                    _selectTime(context);
+                    _selectTime2(context);
                   },
                 ),
 
