@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-String _globalName = "Tim Oldenburger";
-String _globalFunction = "Vulploegleider";
+String _globalName = "";
+String _globalFunction = "";
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key key, this.title}) : super(key: key);
@@ -23,8 +23,8 @@ class MyHomePage extends StatelessWidget {
             itemExtent: 25.0,
             itemBuilder: (context, index) {
               DocumentSnapshot ds = snapshot.data.documents[index];
-              _globalName = "${ds['firstname']} ${ds['lastname']}";
-              _globalFunction = "${ds['function']}";
+              _globalName = "${ds['firstname']} ${ds['lastname']}"; // voor de menu page
+              _globalFunction = "${ds['function']}";                // voor de menu page
             }
           );
         }
