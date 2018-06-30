@@ -4,6 +4,10 @@ description: Medewerkers app
 dependencies:
   flutter:
     sdk: flutter
+
+  path_provider:
+  sqflite: any
+
   cloud_firestore: ^0.7.3
   # shared_preferences: ^0.2.0
 
@@ -13,6 +17,7 @@ dependencies:
 
   firebase_database: ^0.4.1
   firebase_core: any
+  firebase_storage: "^0.3.5"
 
 dev_dependencies:
   flutter_test:

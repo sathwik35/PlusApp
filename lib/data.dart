@@ -1,34 +1,188 @@
-import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// credits naar Joost voor deze databaseconnectie ;)
 
-String _globalName = "";
-String _globalFunction = "";
+import 'dart:async';
+import 'dart:io';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key key, this.title}) : super(key: key);
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
 
-  final String title;
+import 'package:firebase_database/firebase_database.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(title: new Text(title)),
-      body: new StreamBuilder(
-        stream: Firestore.instance.collection('medewerkers').snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) return const Text('Loading...');
-          return new ListView.builder(
-            itemCount: snapshot.data.documents.length,
-            padding: const EdgeInsets.only(top: 10.0),
-            itemExtent: 25.0,
-            itemBuilder: (context, index) {
-              DocumentSnapshot ds = snapshot.data.documents[index];
-              _globalName = "${ds['firstname']} ${ds['lastname']}"; // voor de menu page
-              _globalFunction = "${ds['function']}";                // voor de menu page
-            }
-          );
-        }
-      ),
+class Group {
+  String key;
+
+  String department;
+  String email;
+  String firstname;
+  String function;
+  String lastname;
+  String password;
+  String phone;
+  String username;
+
+  Group(
+    this.department, 
+    this.email, 
+    this.firstname, 
+    this.function, 
+    this.lastname,
+    this.password,
+    this.phone,
+    this.username
+  );
+
+  Group.fromSnapshot(DataSnapshot snapshot)
+        : key = snapshot.key,
+          department = snapshot.value["department"],
+          email = snapshot.value["email"],
+          firstname = snapshot.value["firstname"],
+          function = snapshot.value["function"],
+          lastname = snapshot.value["lastname"],
+          password = snapshot.value["password"],
+          phone = snapshot.value["phone"],
+          username = snapshot.value["username"];  
+          
+  toJson() {
+    return{
+      "department" : department,
+      "email" : email,
+      "firstname" : firstname,
+      "function" : function,
+      "lastname" : lastname,
+      "password" : password,
+      "phone" : phone,
+      "username" : username
+    };
+  }
+}
+
+class SQFLiteConnect{
+
+  SQFLiteConnect();
+
+  Future<String> connectionstring() async {
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    String path = join(documentsDirectory.path, "medewerkers.db");
+    return path;
+  }
+
+  // Future<String> connectionstringGroup() async {
+  //   Directory documentsDirectory = await getApplicationDocumentsDirectory();
+  //   String path = join(documentsDirectory.path, "groups.db");
+  //   return path;
+  // }
+
+  Future<String> insertIntoTable(
+    String department, 
+    String email,
+    String firstname,
+    String function,
+    String lastname,
+    String password,
+    String phone,
+    String username
+  ) async {
+    Database _db = await openDatabase(await connectionstring(), version: 1,
+      onCreate: (Database db, int version) async {
+        await db.execute(
+          onCreateDb
+        );
+      }
     );
+
+    Map<String, dynamic> maps = new Map<String, dynamic>();
+
+    maps["department"] = department;
+    maps["email"] = email;
+    maps["firstname"] = firstname;
+    maps["function"] = function;
+    maps["lastname"] = lastname;
+    maps["password"] = password;
+    maps["phone"] = phone;
+    maps["username"] = username;
+
+    _db.insert("medewerkers", maps);
+    return print("Gegevens succesvol verwerkt!");
+  }
+
+  Future<List<Map<String, dynamic>>> getMedewerkers() async {
+    Database _db = await openDatabase(await connectionstring(), version: 1,
+      onCreate: (Database db, int version) async {
+        await db.execute(
+          onCreateDb
+        );
+      }
+    );
+    var result = await _db.query("medewerkers");
+
+    return result;
+  }
+
+  Future<bool> updateWorkers(
+    String department, 
+    String email,
+    String firstname,
+    String function,
+    String lastname,
+    String password,
+    String phone,
+    String username,    
+    [String path]
+  ) async {
+    Database _db = await openDatabase(await connectionstring(), version: 1,
+      onCreate: (Database db, int version) async {
+        await db.execute(
+          onCreateDb
+        );
+      }
+    );
+    Map<String, dynamic> maps = new Map<String, dynamic>();
+    
+    maps["department"] = department;
+    maps["email"] = email;
+    maps["firstname"] = firstname;
+    maps["function"] = function;
+    maps["lastname"] = lastname;
+    maps["password"] = password;
+    maps["phone"] = phone;
+    maps["username"] = username;  
+    
+    if (path != null) {
+      maps["image"] = path;
+    }  
+    _db.update("medewerkers", maps, where: "username == '" + username + "'");
+
+    return true;
+  }
+
+  Future<bool> deleteWorker(String username) async {
+    Database _db = await openDatabase(await connectionstring(), version: 1,
+      onCreate: (Database db, int version) async {
+        await db.execute(
+          onCreateDb,
+          
+        );
+      }
+    );
+    _db.delete("medewerkers", where: "username == + '" + username + "'");
+
+    return true;
+  }
+
+  Future<Map<String, dynamic>> getWorker(String username) async {
+    Database _db = await openDatabase(await connectionstring(), version: 1,
+      onCreate: (Database db, int version) async {
+        await db.execute(
+          onCreateDb
+        );
+      }
+    );
+    var m = await _db.query("medewerkers", where: "username == '" + username + "'");
+    return m.first;
+  }
+
+  get onCreateDb {
+    return "CREATE TABLE medewerkers (username VARCHAR PRIMARY KEY, department VARCHAR, firstname VARCHAR, function VARCHAR, lastname VARCHAR, password VARCHAR, phone VARCHAR);";
   }
 }
