@@ -91,8 +91,6 @@ class PersoneelPageState extends State<PersoneelPage>
             color: Colors.black,
             height: 1.0,
           ),
-        ]
-      )
-    );
+        ]));
   }
 }
