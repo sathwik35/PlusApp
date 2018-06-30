@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'admin.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 String _action;
 
@@ -47,26 +47,6 @@ class _SearchListState extends State<SearchList>
 
   void init() {
     _list = List();
-    _list.add("Henk Pieters");
-    _list.add("Barry Badpak");
-    _list.add("Kennie Koken");
-    _list.add("Henry Heggeschaar");
-    _list.add("Cornelis Klaase");
-    _list.add("Jan Jansen");
-    _list.add("Jos Schoot");
-    _list.add("Ton Zijnen");
-    _list.add("Loesje Zijnen");
-    _list.add("Roosmarijn Reimers");
-    _list.add("Ronald Groen");
-    _list.add("Bart de Vries");
-    _list.add("Elise Hofman");
-    _list.add("Willemijn Abema");
-    _list.add("Davy Klaassen");
-    _list.add("Justin de With");
-    _list.add("Jos le Brun");
-    _list.add("Dirk van der Heijden");
-    _list.add("Andre Boom");
-    _list.add("Jochem 't Hek");
   }
 
   @override
@@ -74,9 +54,21 @@ class _SearchListState extends State<SearchList>
     return new Scaffold(
       key: key,
       appBar: buildBar(context),
-      body: new ListView(
-        padding: new EdgeInsets.symmetric(vertical: 8.0),
-        children: _IsSearching ? _buildSearchList() : _buildList(),
+      body: new StreamBuilder(
+        stream: Firestore.instance.collection('medewerkers').snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return const Text('Loading...');
+          return new ListView.builder(
+            itemCount: snapshot.data.documents.length,
+            padding: new EdgeInsets.symmetric(vertical: 8.0),
+            itemExtent: 25.0,
+            itemBuilder: (context, index) {
+              DocumentSnapshot ds = snapshot.data.documents[index];
+              _list.add("${ds['firstname']} ${ds['lastname']}");
+              _IsSearching ? _buildSearchList() : _buildList();
+            }
+          );
+        }
       ),
     );
   }
@@ -145,7 +137,7 @@ class ChildItem extends StatelessWidget {
           Navigator.push(
             context,
             new MaterialPageRoute(builder: (context) {
-              return new MedewerkersEdit();
+              return ; //something
             }
           ));
         }
