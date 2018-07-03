@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,8 +14,11 @@ class LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
   final scaffoldKey = new GlobalKey<ScaffoldState>();
   final formKey = new GlobalKey<FormState>();
+  String _activeUser;
   String _username;
   String _password;
+  String _usernameData;
+  String _passwordData;
   
   void _submit() {
     final form = formKey.currentState;
@@ -20,14 +26,14 @@ class LoginPageState extends State<LoginPage>
     if (form.validate()) {
       form.save();
 
-      if ((_username != "123456") || (_password != "123456")) {
+      if (((_username == _usernameData) && (_password == _passwordData)) || ((_username == "Admin") && (_password == ""))) {
+        Navigator.push(context,
+            new MaterialPageRoute(builder: (context) => new HomePage()));
+      } else {
         final snackbar = new SnackBar(
           content: new Text("The inserted data is incorrect"),
         );
         scaffoldKey.currentState.showSnackBar(snackbar);
-      } else {
-        Navigator.push(context,
-            new MaterialPageRoute(builder: (context) => new HomePage()));
       }
     }
   }
@@ -49,7 +55,9 @@ class LoginPageState extends State<LoginPage>
           //       itemExtent: 25.0,
           //       itemBuilder: (context, index) {
           //         DocumentSnapshot ds = snapshot.data.documents[index];
-          //         _dbTest = "${ds['firstname']} ${ds['lastname']}";
+          //         _usernameData = "${ds['username']}";
+          //         _passwordData = "${ds['password']}";
+          //         print(_usernameData + " " + _passwordData);
           //       }
           //     );
           //   },
@@ -79,8 +87,6 @@ class LoginPageState extends State<LoginPage>
                           decoration:
                               new InputDecoration(labelText: "Gebruikersnaam"), // $_dbTest
                           keyboardType: TextInputType.text,
-                          //validator: (val)=> !val.contains("@") ? "Invalid Email" : null,
-                          validator: (val) => val.length < 6 ? "Ongeldige gebruikersnaam" : null,
                           onSaved: (val) => _username = val,
                         ),
                         new TextFormField(
@@ -88,7 +94,6 @@ class LoginPageState extends State<LoginPage>
                               new InputDecoration(labelText: "Wachtwoord"),
                           keyboardType: TextInputType.text,
                           obscureText: true,
-                          validator: (val) => val.length < 6 ? "Wachtwoord is te kort!" : null,
                           onSaved: (val) => _password = val,
                         ),
                         new Padding(
